@@ -1,5 +1,3 @@
-
-
 if has('vim_starting')
   let s:vimrc = "~/dotfiles/.vimrc"
   let s:neobundle_root = "~/.vim/bundle/"
@@ -19,36 +17,20 @@ endif
 "**********************************
 "Neo Bundle's setting
 "**********************************
-"neobundle#rc
-"neobundle#get
 call neobundle#begin(expand('~/.vim/bundle/'))
 let g:neobundle_default_git_protocol='https'
 NeoBundleFetch 'Shougo/neobundle.vim'
 "**********************************
-"colorscheme
-"**********************************
-NeoBundle 'tomasr/molokai' "colorscheme
-"**********************************
 "programming language
 "**********************************
+NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'vim-scripts/javacomplete'
-"python
-NeoBundle "klen/python-mode"
+"NeoBundle "klen/python-mode"
 NeoBundle 'bps/vim-textobj-python'
 NeoBundle 'davidhalter/jedi-vim' "cmmpletion for python 
-"/vim-flake8" "python coding policy check
-"latex
-"NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
-NeoBundle 'lervag/vimtex'
-"NeoBundle 'lervag/vim-latex'
-"NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-"R
-NeoBundle 'vim-scripts/Screen-vim---gnu-screentmux'
-NeoBundle 'vim-scripts/Vim-R-plugin'
-"markdown
 NeoBundle 'tpope/vim-markdown'
-"DB
 NeoBundle 'vim-scripts/dbext.vim', '18.0'
+NeoBundle 'aklt/plantuml-syntax' "make uml by text
 "**********************************
 "IDE
 "**********************************
@@ -66,23 +48,17 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'scrooloose/syntastic.git' "syntax check by save
 NeoBundle 'aperezdc/vim-template' 
 NeoBundle 'vim-scripts/project.tar.gz' 
-"NeoBundle 'aklt/plantuml-syntax' "make uml by text
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'shougo/neomru.vim' "show recently used file in unite
 "neosnippet and neocomplete
-"NeoBundle 'shougo/neocomplete.vim' "neocomplete plugin
 NeoBundle 'shougo/neocomplete' "neocomplete plugin
 NeoBundle 'ujihisa/neco-look' "completion for english
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets' "neosnipet deffinition file
 NeoBundle "honza/vim-snippets" "snip files
-NeoBundle "shougo/vimshell"
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'mhinz/vim-startify'
 "git
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'cohama/agit.vim'
-"unite-giti / unite-versions
 "**********************************
 "Unite
 "**********************************
@@ -93,10 +69,19 @@ NeoBundle "osyo-manga/unite-quickfix"
 NeoBundle "tacroe/unite-mark"
 NeoBundle 'Shougo/unite-help'
 NeoBundle 'osyo-manga/unite-qfixhowm'
-NeoBundle 'haya14busa/unite-reading-vimrc'
-NeoBundle 'ujihisa/unite-colorscheme'
-"quickrun_config
-"re animate
+"**********************************
+"reenfoce function
+"**********************************
+NeoBundle 'kana/vim-submode'
+NeoBundle 'tyru/restart.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle "Lokaltog/vim-easymotion"
+NeoBundle "vim-scripts/YankRing.vim"
+NeoBundle 'chrisbra/csv.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'sjl/gundo.vim'
 "**********************************
 "vim-ref
 "**********************************
@@ -108,7 +93,6 @@ NeoBundle 'mojako/ref-sources.vim'
 NeoBundle 'fuenor/qfixhowm' "to various memo manually install
 NeoBundle 'fuenor/qfixgrep' "to various memo manually install
 NeoBundle 'mattn/calendar-vim'
-"NeoBundle 'migrs/qfixhowm' "to various memo manually install
 "**********************************
 "text object and operator
 "**********************************
@@ -125,124 +109,24 @@ NeoBundle 'kana/vim-textobj-entire'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'thinca/vim-textobj-between'
 NeoBundle 'rbonvall/vim-textobj-latex'
-"NeoBundle 'emonkak/vim-operator-comment' "to add commentout operator 
 "**********************************
 "edit
 "**********************************
 NeoBundle "tpope/vim-surround"
 NeoBundle "scrooloose/nerdcommenter"
-NeoBundle "h1mesuke/vim-alignta"
-"NeoBundle 'taku-o/vim-toggle'
-NeoBundle 'zef/vim-cycle'
-NeoBundle 'kana/vim-smartchr'
-NeoBundle 'kana/vim-smartinput'
-NeoBundle 'Townk/vim-autoclose'
 "**********************************
 "looks
 "**********************************
-"NeoBundle "nathanaelkane/vim-indent-guides"
+NeoBundle 'tomasr/molokai' "colorscheme
 NeoBundle 'Yggdroot/indentLine'
-"NeoBundle "rbtnn/rabbit-ui.vim"
-"NeoBundle "rbtnn/rabbit-ui-collection.vim"
 NeoBundle 'jacquesbh/vim-showmarks'
 NeoBundle 'Lokaltog/vim-powerline'
 "**********************************
 "read helping info
 "**********************************
-"**********************************
-"not organized
-"**********************************
 NeoBundle "vim-jp/vimdoc-ja"
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle "Lokaltog/vim-easymotion"
-"NeoBundle 'houtsnip/vim-emacscommandline'
-NeoBundle "vim-scripts/YankRing.vim"
-NeoBundle "gregsexton/VimCalc"
-"NeoBundle 'haya14busa/vim-migemo'
-NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'cloudformdesign/vim.ergonomic'
-NeoBundle 'rizzatti/dash.vim'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'LeafCage/foldCC.vim'
-"NeoBundle 'vim-scripts/ViewOutput'
-NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle 'kana/vim-submode'
-"Neobundle 'zhaocai/GoldenView.Vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'tyru/restart.vim'
-NeoBundle 'thinca/vim-prettyprint'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'thinca/vim-ft-help_fold'
-NeoBundle 'tyru/capture.vim'
-NeoBundle "t9md/vim-quickhl" "for highlight variable
-
-"poslist
-"smartinput endwise
-"NeoBundle 'nielsadb/vim-filtering' "serch filtering
-"NeoBundle 'kana/vim-arpeggio' "simultaneously pressed key
-"winresizer
-"tpope/vim-abolish
-"svermeulen/vim-easyclip
-"godlygeek/tabular
-"switch.vim
-"vim-slime
-""browser load mac
-"tyru/capture export to buffer
-"endwie
-"rspec
-"rsense
-"dbnext
-"unitere rake
-"ref-ri
-"HarveyHunt/howm
-"coot/atp_vim
-"fholgado/minibufexpl.vim
-"context filetype
-"watchdog
-"substituitive
-"tagbar
-"ultisnip
-"org-mode
-"Ctrlp
-"NeoBundle 'vim-scripts/matchit.zip'
-"NeoBundle 'vim-scripts/taglist.vim'grep.vim
-"mustache/vim-mustache-handlebars
-"'alpaca-tc/alpaca_tags'
-"easy-align
-"NeoBundle 'kannokanno/previm'
-"NeoBundle 'LeafCage/yankround.vim'
-"'mattn/emmet-vim
-"'NeoBundle 'moll/vim-node'
-"NeoBundle 'yuratomo/w3m.vim'
-"NeoBundle 'itchyny/lightline.vim'
-"NeoBundle 'slim-template/vim-slim'
-" 最近知ったjellybeanから乗り換えたcolor scheme
-"NeoBundle 'junegunn/seoul256.vim'
-"nextfile
-"" WORD for Japanese.
-"NeoBundle 'deton/jasegment.vim'
-"NeoBundle 'yuku-t/vim-ref-ri'
-"NeoBundle 'rbtnn/vimconsole.vim'
-"virtualenv.vim
-"set guioptions-=m
-"set guioptions-=T
-"if has('multi_byte_ime') || has('xim')
-  "highlight CursorIM guibg=Purple guifg=NONE
-  "set iminsert=0 imsearch=0
-"endif
-" autocmd gvimrc GUIEnter * set transparency=220
-" autocmd gvimrc FocusGained * set transparency=220
-" autocmd gvimrc FocusLost * set transparency=128
-"NeoBundle 'LeafCage/yankround.vim'
-"nmap p <Plug>(yankround-p)
-"xmap p <Plug>(yankround-p)
-"nmap P <Plug>(yankround-P)
-"nmap gp <Plug>(yankround-gp)
-"xmap gp <Plug>(yankround-gp)
-"nmap gP <Plug>(yankround-gP)
-"nmap <C-p> <Plug>(yankround-prev)
-"nmap <C-n> <Plug>(yankround-next)NeoBundle 'osyo-manga/unite-fold'
+NeoBundle 'rizzatti/dash.vim'
 
 NeoBundleCheck "プラグインがインストールされているかチェックする
 call neobundle#end()
@@ -250,17 +134,9 @@ if !has('vim_starting')
   call neobundle#call_hook('on_source') "vimrcを読み込み直したときのための設定
   call neobundle#end()
 endif
-"let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
-"let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
-"let g:vimshell_temporary_directory  = expand('~/.vim/etc/VimShell')
-"let g:unite_data_directory          = expand('~/.vim/etc/unite')
-"let g:neomru#file_mru_path          = expand('~/.vim/etc/neomru/file')
-"let g:neomru#directory_mru_path     = expand('~/.vim/etc/neomru/direcroty')
-"let g:ref_cache_dir                 = expand('~/.vim/etc/vim_ref_cache')
-"let g:w3m#history#save_file         = expand('~/.vim/etc/.vim_w3m_hist')
-"let g:yankround_dir                 = expand('~/.vim/etc/.cache/yankround')
+
 "**********************************
-"fugitive
+"restart
 "**********************************
 let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 let g:restart_vim_progname  =  "gvim"
@@ -271,7 +147,6 @@ let g:restart_save_window_values  = 1
 "**********************************
 "statusline に %{fugitive#statusline()} を追加すると、ステータスラインに今いるブランチ名が表示される
 "nmap [fugitive] <Nop>
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 nnoremap gc :Gcommit -am "
 nnoremap gpush :Git push<CR>
 nnoremap gpusll :Git pull<CR>
@@ -287,25 +162,12 @@ nnoremap gr :Gread<CR>
 nnoremap gl :Agit<CR>
 
 "**********************************
-"capture
-"**********************************
-nnoremap <leader>c :Capture<CR>
-
-"**********************************
 "quickhl
 "**********************************
 nmap <leader>h <Plug>(quickhl-manual-this)
 xmap <leader>h <Plug>(quickhl-manual-this)
 nmap <leader>H <Plug>(quickhl-manual-reset)
 xmap <leader>H <Plug>(quickhl-manual-reset)
-
-"**********************************
-"cycle.vim
-"**********************************
-source ~/.vim/bundle/vim-cycle/plugin/cycle.vim
-call AddCycleGroup(['section', 'subsection', 'subsubsection'])
-call AddCycleGroup(['equation', 'align'])
-call AddCycleGroup(['equation', 'align'])
 
 "**********************************
 "submode.vim
@@ -333,51 +195,6 @@ call submode#map('undo/redo', 'n', '', '-', 'g-')
 call submode#map('undo/redo', 'n', '', '+', 'g+')
 
 "**********************************
-"toggle.vim
-"**********************************
-"let g:toggle_pairs = {} 
-"let g:toggle_pairs['section'] = 'subsection'
-"let g:toggle_pairs['subsection'] = 'subsubsection'
-"let g:toggle_pairs['subsubsection'] = 'section'
-"nmap + <Plug>ToggleN
-"", 'subsection' : 'subsubsection'  }
-"**********************************
-"smart input
-"**********************************
-"call smartinput#map_to_trigger('i', '<Plug>(smartinput_BS)',
-      "\                        '<BS>',
-      "\                        '<BS>')
-"call smartinput#map_to_trigger('i', '<Plug>(smartinput_C-h)',
-      "\                        '<BS>',
-      "\                        '<C-h>')
-"call smartinput#map_to_trigger('i', '<Plug>(smartinput_CR)',
-      "\                        '<Enter>',
-      "\                        '<Enter>')
-"call smartinput#define_rule({
-      "\ 'at'    : '\%([^''"][\sA-Za-z]\*\|^\|%\)\%#',
-      "\ 'char'  : '%',
-      "\ 'input' : "<C-R>=smartchr#one_of(' % ', '%')<CR>",
-      "\ })
-
-
-"**********************************
-"vimshell
-"**********************************
-if has("mac")
-  let g:vimshell_editor_command="/usr/local/bin/vim"
-endif
-
-"**********************************
-"smartchar
-"**********************************
-inoremap <expr> = smartchr#one_of('=', ' = ', ' == ', ' === ')
-inoremap <expr> + smartchr#loop('+', ' + ')
-inoremap <expr> - smartchr#loop('-', ' - ')
-inoremap <expr> , smartchr#loop(', ', ',')
-"inoremap <expr> / smartchr#one_of(' / ', '// ', '/')
-inoremap <buffer><expr> . smartchr#loop('.', '<-', '...')
-
-"**********************************
 "template
 "**********************************
 let g:templates_directory = ['~/.vim/template']
@@ -390,17 +207,6 @@ let g:templates_global_name_prefix ='template'
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-
-"**********************************
-"vim-r-plugin
-"**********************************
-let vimrplugin_applescript = 0
-let maplocalleader = ","
-"vmap <Space> <Plug>RDSendSelection
-"nmap <Space> <Plug>RDSendLine
-"let vimrplugin_vsplit=1
-let vimrplugin_objbr_w = 30
-let vimrplugin_rconsole_height = 5
 
 "**********************************
 "multitextobj
@@ -435,13 +241,6 @@ let g:startify_custom_header =
 let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
 " よく使うファイルをブックマークとして登録しておく
 let g:startify_bookmarks = ['~/dotfiles/.vimrc']
-
-"**********************************
-"argeggio
-"**********************************
-"call arpeggio#load()
-"map cc <Plug>(operator-comment) 
-"Arpeggiomap od <Plug>(operator-uncomment)
 
 "**********************************
 "dash 
@@ -485,15 +284,6 @@ nnoremap <silent>d[Mark] :MarksDelete<CR>
 map <leader> <Plug>(easymotion-prefix)
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_leader_key=","
-" 1 ストローク選択を優先する
-"let g:EasyMotion_grouping=1
-
-"**********************************
-"make java
-"**********************************
-"autocmd Filetype java set makeprg=javac\ %
-"set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-"map :make :make<Return>:copen<Return>
 
 "**********************************
 "pyFlakes 
@@ -505,8 +295,8 @@ let g:PyFlakeDefaultComplexity=10
 "**********************************
 "python mode
 "**********************************
-let g:pymode_run = 1
-let g:pymode_run_bind='<F5>'
+"let g:pymode_run = 1
+"let g:pymode_run_bind='<F5>'
 
 "**********************************
 "syntastic
@@ -548,13 +338,6 @@ let QFixHowm_Autoformat_TitleMode = 1 "行頭にTitle全てタイトルとみな
 let QFixHowm_SaveTime = 1 "タイムスタンプを自動で付加する
 "let QFixHowm_SplitMode = 1 "ウィンドウ分割を基本にしてhowmファイルを開く
 let QFixHowm_DefaultTag = ''
-"**********************************
-"vim filtering
-"**********************************
-"nnoremap ,f :call FilteringNew().addToParameter('alt', @/).run()<CR>
-"nnoremap ,F :call FilteringNew().parseQuery(input('>'), '|').run(
-"nnoremap ,g :call FilteringGetForSource().return()<CR>
-"nmap ,r :call Gather(expand("<cword>"), 0)<CR>:echo<CR>
 
 "**********************************
 "vim filer
@@ -569,11 +352,13 @@ let g:vimfiler_file_icon = '-'
 let g:vimfiler_marked_file_icon = '*'
 let g:vimfiler_execute_file_list = 'vim'
 nmap <silent>e. :VimFiler -split -simple -winwidth=20 -no-quit<CR>
+let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
 "autocmd VimEnter * VimFiler -split -simple -winwidth=20 -no-quit
 
 "**********************************
 "vim-ref
 "**********************************
+let g:ref_cache_dir                 = expand('~/.vim/etc/vim_ref_cache')
 let g:ref_use_vimproc=1
 let g:ref_refe_version=2
 let g:ref_refe_encoding = 'utf-8'
@@ -611,10 +396,9 @@ let g:ref_kotobankej_auto_resize = 1
 "unite.vim
 "**********************************
 ":UniteWithCursorWord
-"qfixhowm
-"let g:unite#custom_source('qfixhowm', 'sorters', ['sorter_qfixhowm_updatetime','sorter_reverse'])
-""qfixhowm/new"
-
+let g:neomru#file_mru_path          = expand('~/.vim/etc/neomru/file')
+let g:neomru#directory_mru_path     = expand('~/.vim/etc/neomru/direcroty')
+let g:unite_data_directory          = expand('~/.vim/etc/unite')
 let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 "grep
 let g:unite_source_grep_command = 'ag'
@@ -687,18 +471,6 @@ nnoremap <silent>[unite]v  :<C-u>Unite output:version<CR>
 nnoremap <silent>[unite]l  :<C-u>Unite -start-insert line<CR>
 nnoremap <silent>[unite]p  :<C-u>Unite -start-insert process<CR>
 nnoremap <silent>[unite]r  :<C-u>Unite -start-insert register<CR>
-"output:message
-"output:imap
-"function
-"vimgrep
-"find
-"launcher
-"alias
-"history/yank
-"runtimepath
-"output:maplmap!llmap
-"mapping
-"qfixhowm:nocache
 "**********************************
 "quicktun config
 "**********************************
@@ -726,19 +498,16 @@ let g:quickrun_config = {
 \       "hook/time/enable" : 1,
 \   }
 \}
-"outputter/buffer/close_on_empty"
 "tex
 let g:quickrun_config.tex = {'command' : 'latexmk', 
       \ 'exec' : ['%c %o %s'], 
 \       "hook/shabadoubi_touch_henshin/enable" : 0,
       \ 'cmdopt' : '-pdfdvi'}
-      "\ 'cmdopt' : '-pdfdvi', 
       
 noremap <leader>r :<C-u>QuickRun<CR>
 
 augroup texrun
   autocmd!
-  "autocmd BufWritePost *.tex :QuickRun
   autocmd FileType tex nnoremap <buffer> <leader>lr :!latexmk -pdfdvi %<CR>
   autocmd FileType tex nnoremap <buffer> <leader>lo :!open -a skim %<.pdf<CR>
 augroup END
@@ -757,15 +526,13 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 "**********************************
 "neocommplete
 "**********************************
+let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
 "looks
 let g:neocomplete#max_keyword_width  =  50
 let g:neocomplete#max_list  =  5
 "not organized
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"call neocomplete#custom#source('_', 'matchers',
-"      \ ['matcher_head', 'matcher_length'])
-"let g:neocomplete#enable_auto_select  =  1
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
@@ -836,8 +603,6 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnnipet_expand_target)
 nnoremap ,ne :NeoSnippetEdit<CR>
 autocmd BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
-"imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=0 concealcursor=i
@@ -855,141 +620,6 @@ let g:jedi#auto_vim_configuration = 0
 "autocmd FileType python setlocal completeopt-=preview
 
 "**********************************
-"vim-latex
-"**********************************
-" change to vim-latex
-let g:tex_conceal = ""
-let g:vimtex_latexmk_enabled = 1
-let g:vimtex_latexmk_options = '-pdfdvi'
-let g:vimtex_view_method = 'general'
-let g:vimtex_view_general_viewer = '/applications/skim.app/contents/macos/skim'
-let g:vimtex_quickfix_ignore_all_warnings = 1
-"" fold
-"let g:latex_fold_parts = [
-"      \ "appendix",
-"      \ "frontmatter",
-"      \ "mainmatter",
-"      \ "backmatter",
-"    \ ]
-"let g:latex_fold_sections = [
-"      \ "part",
-"      \ "chapter",
-"      \ "section",
-"      \ "subsection",
-"      \ "subsubsection",
-"    \ ]
-"let g:latex_fold_enabled = 1
-"let g:latex_fold_automatic = 1
-"let g:latex_fold_envs = 0
-""compile
-let g:vimtex_latexmk_continuous = 1
-let g:vimtex_latexmk_background = 1
-"let g:latex_latexmk_callback = 0  " コンパイル終了後のエラー通知オフ
-""table of contents
-let g:latex_toc_split_pos = "topleft"
-let g:latex_toc_width = 10
-"" synctex
-function! s:synctexforward()
-  call system('/applications/skim.app/contents/sharedsupport/displayline -g '
-    \ . line(".") . " "
-    \ . g:latex#data[b:latex.id].out() . " "
-    \ . expand('%:p'))
-endfunction
-" preview
-function! s:previewtex() range
-    let l:tmp = @@
-    silent normal gvy
-    let l:selected = split(@@, "\n")
-    let @@ = l:tmp
-    let l:template1 = ["\\documentclass[a4paper]{jsarticle}",
-                      \"\\usepackage[dvipdfmx]{graphicx}",
-                      \"\\usepackage{amsmath,amssymb,bm}",
-                      \"\\pagestyle{empty}",
-                      \"\\begin{document}"]
-    let l:template2 = ["\\end{document}"]
-    let l:output_file = "preview.tex"
-    call writefile(extend(extend(l:template1, l:selected), template2), l:output_file)
-    silent call system("latexmk -pdfdvi preview &")
-endfunction
-"autocmd myautocmd filetype tex
-            "\   nnoremap <buffer> <space>la :call latex#motion#next_section(0,1,0)<cr>v:call latex#motion#next_section(0,0,1)<cr>:call <sid>previewtex()<cr>
-            "\ | vnoremap <buffer> <space>la :call <sid>previewtex()<cr>
-            "\ | nnoremap <buffer> <space>ls :call <sid>synctexforward()<cr>
-" for neocomplete
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-let g:neocomplete#sources#omni#input_patterns.tex = '\\ref{\s*[0-9a-za-z_:]*'
-"""\citeも自動補完するなら
-let g:neocomplete#sources#omni#input_patterns.tex = '\\cite{\s*[0-9a-za-z_:]*\|\\ref{\s*[0-9a-za-z_:]*'
-"nmap <localleader>ll <plug>(vimtex-compile-toggle)
-"**************************************
-"" latex box
-""*************************************
-"let g:latexbox_output_type = 'pdf'
-"let g:latexbox_latexmk_options = '-pdf'
-"let g:latexbox_latexmk_options = '-pdfdvi'
-"let g:latexbox_latexmk_options = '-pdfps'
-"let g:latexbox_viewer = 'open'
-
-"**********************************
-" LATEX
-"**********************************
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-"set grepprg=grep\ -nH\ $* "?
-""looks
-"let g:tex_flavor='latex'
-"let g:tex_conceal=''
-"let g:TeX_AutoFolding = 1
-"let g:Tex_Folding = 1
-""placeholder
-"let g:Imap_UsePlaceHolders = 1 
-"let g:Imap_DeleteEmptyPlaceHolders = 1 
-"let g:Imap_StickyPlaceHolders = 0 
-""compile
-"let g:Tex_DefaultTargetFormat = 'pdf'
-"let g:Tex_FormatDependency_pdf = 'dvi,pdf' "tex > dvi > pdf
-"let g:Tex_FormatDependency_ps = 'dvi,ps' "tex > dvi > ps
-"let g:Tex_MultipleCompileFormats = 'pdf'
-"let g:Tex_CompileRule_dvi = 'platex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-"let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi' 
-"let g:Tex_BibtexFlavor = 'upbibtex'
-"let g:Tex_MakeIndexFlavor = 'mendex -U $*.idx'
-"let g:Tex_UseEditorSettingInDVIViewer = 1 
-""viewer
-"let g:Tex_ViewRule_pdf = 'Skim'
-""let g:Tex_ViewRule_pdf = 'open -a Preview.app'
-""let g:Tex_ViewRule_ps = 'open'
-""let g:Tex_ViewRule_dvi = 'open'
-"let g:Tex_IgnoreLevel = 9 
-"let g:Tex_IgnoredWarnings = 
-    "\"Underfull\n".
-    "\"Overfull\n".
-    "\"specifier changed to\n".
-    "\"You have requested\n".
-    "\"Missing number, treated as zero.\n".
-    "\"There were undefined references\n".
-    "\"Citation %.%# undefined\n".
-    "\"LaTeX Font Warning: Font shape `%s' undefined\n".
-    "\"LaTeX Font Warning: Some font shapes were not available, defaults substituted."
-"augroup MyIMAPs
-  "au!
-  "au VimEnter * call IMAP('FMB', '\mathbf{}', 'tex')
-  "au VimEnter * call IMAP('FBM', '\bm{}<++>', 'tex')
-  "au VimEnter * call IMAP('FBB', '\mathbb{<++>}<++>', 'tex')
-  "au VimEnter * call IMAP('ECA', '\begin{cases} ^M \case <++> ^M \end{cases}<++>', 'tex')
-"augroup END
-
-"**********************************
-"indent-guides
-"**********************************
-"change to indent -line bcause indent line have better looks than indent guides
-"let g:indent_guides_color_change_percent = 10
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_enable_on_vim_startup = 1
-"nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
-
-"**********************************
 "indent-line
 "**********************************
 "**********************************
@@ -1002,24 +632,11 @@ augroup END
 autocmd helpgroup FileType help nnoremap <buffer> q <C-w>c
 set keywordprg=:help " Open Vim internal help by K command
 set helplang=ja
-"nnoremap <Space>t :<C-u>tab help<Space>
-"nnoremap <Space>v :<C-u>vertical belowright help<Space>
-" MoveToNewTab
-nnoremap <silent> tm :<C-u>call <SID>MoveToNewTab()<CR>
-function! s:MoveToNewTab()
-    tab split
-    tabprevious
-    if winnr('$') > 1
-        close
-    elseif bufnr('$') > 1
-        buffer #
-    endif
-    tabnext
-endfunction
 "**********************************
 "LOOKS
 "**********************************
 colorscheme molokai
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 syntax on
 let g:molokai_original = 1
 let g:rehash256 = 1 "?
@@ -1028,9 +645,6 @@ set guifont=Ricty-Regular:h14
 set number 
 set cmdheight=2 "コマンドラインの高さを2行に
 set cursorline
-"set list 
-"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-"tab / indent
 set autoindent
 set expandtab "tab is replaced by space
 set shiftwidth=2 "タブ文字の代わりにスペース２個を使う
@@ -1044,7 +658,6 @@ set wrap "折り返し
 "THE OTHERS
 "**********************************
 set modelines=0		"?
-"set backspace=2		" more powerful backspacing
 set imdisable "english in normal mode
 set clipboard=unnamed " ヤンクなどで * レジスタにも書き込む
 set modifiable
@@ -1108,25 +721,11 @@ set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp
 set encoding=utf-8
 
 "**********************************
-"window size
-"**********************************
-"nnoremap <S-Left>  <C-w><<CR>
-"nnoremap <S-Right> <C-w><CR>
-nnoremap <S-Up>    <C-w>+<CR>
-nnoremap <S-Down>  <C-w>-<CR>
-" Ctrl + hjkl でウィンドウ間を移動
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-
-"**********************************
 "tab BIND
 "**********************************
 nnoremap    [tab]   <Nop>
 nmap    t [tab]
 map <silent> [tab]n :tablast <bar> tabnew<CR>
-map <silent> [tab]x :tabclose<CR>
 
 "**********************************
 "KEY BIND
@@ -1153,38 +752,15 @@ noremap <C-l>  $
 "search
 nnoremap n nzz
 nnoremap N Nzz
-"nnoremap <Space>/  *
-"jump
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
 "help
-nnoremap <C-h>      :<C-u>help<Space>
+"nnoremap <C-h>      :<C-u>help<Space>
 
 "copy and paste 
 "カーソル位置以降の単語の文字列ととヤンクした文字列を置換
 noremap <silent> cy ce<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 noremap <silent> ciy ciw<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
-"command history
-"nnoremap qqq <ESC>q:
-"nnoremap <leader>h <ESC>q:
-"nnoremap q: <NOP>
-"nnoremap q/ <NOP>
-"nnoremap q? <NOP>
-"noremap <Space>h  ^
-"noremap <Space>l  $
-"nnoremap <Space>/  *
-"incertmode
 inoremap jj <ESC>
-"inoremap <C-h> <Left>
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-inoremap <C-l> <Right>
 "nnoremap q :<C-u>q<CR>
-"quickfix
-map <F10> :cprevious<Return>
-map <F11> :cnext<Return>
 
 "**********************************
 "snippet
