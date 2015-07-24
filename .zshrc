@@ -4,14 +4,20 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
-#export TERM=xterm-256color
+export TERM=xterm-256color
+export CLICOLOR=true
 source /usr/local/Cellar/antigen/1/share/antigen.zsh
-antigen use oh-my-zsh
+if [ -f /usr/local/etc/brew-wrap ];then
+  source /usr/local/etc/brew-wrap
+fi
 antigen bundle git
 antigen bundle pip
 antigen bundle command-not-found
-#antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle mollifier/cd-bookmark
+alias cdb='cd-bookmark'
+antigen bundle mollifier/anyframe
 antigen bundle brew
 antigen bundle zsh-users/zsh-completions
-antigen theme wedisagree
 antigen apply
+PROMPT='%F{magenta}[%~] %f'
+
