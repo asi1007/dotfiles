@@ -25,12 +25,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "**********************************
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'vim-scripts/javacomplete'
-"NeoBundle "klen/python-mode"
 NeoBundle 'bps/vim-textobj-python'
 NeoBundle 'davidhalter/jedi-vim' "cmmpletion for python 
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'vim-scripts/dbext.vim', '18.0'
 NeoBundle 'aklt/plantuml-syntax' "make uml by text
+NeoBundle 'rbonvall/vim-textobj-latex'
 "**********************************
 "IDE
 "**********************************
@@ -65,7 +65,6 @@ NeoBundle 'cohama/agit.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'soramugi/auto-ctags.vim' "to use unite outline
 NeoBundle 'Shougo/unite-outline'
-NeoBundle "osyo-manga/unite-quickfix"
 NeoBundle "tacroe/unite-mark"
 NeoBundle 'Shougo/unite-help'
 NeoBundle 'osyo-manga/unite-qfixhowm'
@@ -73,7 +72,6 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "reenfoce function
 "**********************************
 NeoBundle 'kana/vim-submode'
-NeoBundle 'tyru/restart.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'haya14busa/incsearch.vim'
@@ -103,12 +101,8 @@ NeoBundle 'kana/vim-textobj-indent' " to add same indent block to text obj
 NeoBundle 'sgur/vim-textobj-parameter'
 NeoBundle 'osyo-manga/vim-textobj-multiblock'
 NeoBundle 'osyo-manga/vim-textobj-multitextobj' 
-NeoBundle 'thinca/vim-textobj-comment' "to add comment to text obj
-NeoBundle 'kana/vim-operator-replace' "replace object with yanked item
-NeoBundle 'kana/vim-textobj-entire'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'thinca/vim-textobj-between'
-NeoBundle 'rbonvall/vim-textobj-latex'
 "**********************************
 "edit
 "**********************************
@@ -126,7 +120,6 @@ NeoBundle 'Lokaltog/vim-powerline'
 "**********************************
 NeoBundle "vim-jp/vimdoc-ja"
 NeoBundle 'thinca/vim-ft-help_fold'
-NeoBundle 'rizzatti/dash.vim'
 
 NeoBundleCheck "プラグインがインストールされているかチェックする
 call neobundle#end()
@@ -134,13 +127,6 @@ if !has('vim_starting')
   call neobundle#call_hook('on_source') "vimrcを読み込み直したときのための設定
   call neobundle#end()
 endif
-
-"**********************************
-"restart
-"**********************************
-let g:restart_sessionoptions = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
-let g:restart_vim_progname  =  "gvim"
-let g:restart_save_window_values  = 1
 
 "**********************************
 "fugitive
@@ -188,11 +174,6 @@ call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
 call submode#leave_with('changetab', 'n', '', 'g')
 call submode#map('changetab', 'n', '', 't', 'gt')
 call submode#map('changetab', 'n', '', 'T', 'gT')
-"undo redo mode
-call submode#enter_with('undo/redo', 'n', '', 'g-', 'g-')
-call submode#enter_with('undo/redo', 'n', '', 'g+', 'g+')
-call submode#map('undo/redo', 'n', '', '-', 'g-')
-call submode#map('undo/redo', 'n', '', '+', 'g+')
 
 "**********************************
 "template
@@ -232,36 +213,17 @@ let g:yankring_max_display = 10
 nnoremap <silent> <leader>Y :<c-u>YRShow<CR>
 
 "**********************************
-"vim-startify
-"**********************************
-" startifyのヘッダー部分に表示する文字列を設定する
-let g:startify_custom_header =
-  \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
-"使用するアルファベットを指定(デフォルトだと数字)
-let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
-" よく使うファイルをブックマークとして登録しておく
-let g:startify_bookmarks = ['~/dotfiles/.vimrc']
-
-"**********************************
-"dash 
-"**********************************
-" dash.vim {{{
-nmap <Leader>d <Plug>DashSearch
-" }}}
-
-"**********************************
 "gundo
 "**********************************
 nnoremap <leader>gt :GundoToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
+
 "**********************************
 "open browser
 "**********************************
 "let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap <leader>os <Plug>(openbrowser-smart-search)
 nnoremap <leader>ob :OpenBrowser http://google.com/<CR> 
-"nmap brw <Plug>(openbrowser-search)
-"nmap browse <silent>:OpenBrowser http://google.com/  
 
 "**********************************
 "show mark
@@ -291,12 +253,6 @@ let g:EasyMotion_leader_key=","
 let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
 let g:PyFlakeDefaultComplexity=10
-
-"**********************************
-"python mode
-"**********************************
-"let g:pymode_run = 1
-"let g:pymode_run_bind='<F5>'
 
 "**********************************
 "syntastic
@@ -346,14 +302,11 @@ let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_tree_leaf_icon = ' '
-"let g:vimfiler_tree_opened_icon = '▾'
-"let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon = '-'
 let g:vimfiler_marked_file_icon = '*'
 let g:vimfiler_execute_file_list = 'vim'
 nmap <silent>e. :VimFiler -split -simple -winwidth=20 -no-quit<CR>
 let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
-"autocmd VimEnter * VimFiler -split -simple -winwidth=20 -no-quit
 
 "**********************************
 "vim-ref
@@ -386,6 +339,7 @@ function! g:ref_source_webdict_sites.wiki.filter(output)
   return join(split(a:output, "\n")[17 :], "\n")
 endfunction
 nmap <leader>d :<C-u>Ref webdict ej<Space>
+
 "**********************************
 "ref-sources
 "**********************************
@@ -395,7 +349,6 @@ let g:ref_kotobankej_auto_resize = 1
 "**********************************
 "unite.vim
 "**********************************
-":UniteWithCursorWord
 let g:neomru#file_mru_path          = expand('~/.vim/etc/neomru/file')
 let g:neomru#directory_mru_path     = expand('~/.vim/etc/neomru/direcroty')
 let g:unite_data_directory          = expand('~/.vim/etc/unite')
@@ -449,28 +402,20 @@ function! g:unite_source_menu_menus.shortcut.map(key, value)
           \           }
   endif
 endfunction
-"AllMap
 "map
 nnoremap [unite] <Nop>
 nmap <space> [unite]
 nnoremap [unite]<space> :Unite<space>
-nnoremap <silent> [unite]a :<C-u>Unite -vertical buffer file_mru<CR>
 nnoremap <silent>[unite]d :cd ~/Documents<CR>:<C-u>Unite -vertical -start-insert file_rec/async<CR>
 nnoremap <silent>[unite]b :<C-u>Unite -vertical bookmark<CR>
-"nnoremap <silent> [unite]m :<C-u>Unite -vertical mark<CR>
 nnoremap <silent>[unite]m :<C-u>Unite -vertical menu<CR>
-nnoremap <silent>[unite]n :<C-u>Unite -vertical neobundle<CR>
 nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit outline<CR>
 nnoremap <silent> [unite]f :<C-u>Unite -vertical -no-quit file_rec/async<CR>
 nnoremap <silent>[unite]d :cd ~/Documents<CR>:<C-u>Unite -vertical -start-insert file_rec/async<CR>
-nnoremap <silent>[unite]s  :<C-u>Unite source<CR>
 nnoremap <silent>[unite]h  :<C-u>Unite help<CR>
 nnoremap <silent>[unite]g  :<C-u>Unite qfixhowm<CR>
-"nnoremap <silent>[unite]c  :<C-u>Unite command<CR>
-nnoremap <silent>[unite]v  :<C-u>Unite output:version<CR>
 nnoremap <silent>[unite]l  :<C-u>Unite -start-insert line<CR>
-nnoremap <silent>[unite]p  :<C-u>Unite -start-insert process<CR>
-nnoremap <silent>[unite]r  :<C-u>Unite -start-insert register<CR>
+
 "**********************************
 "quicktun config
 "**********************************
@@ -513,7 +458,6 @@ augroup texrun
 augroup END
 
 "markdown
-"autocmd BufNewFile,BufRead .{md,mdwn,mkd,mkdn,mark} set filetype=markdownlet g:quickrun_config = {}
 let g:quickrun_config.markdown = {
       \ 'outputter' : 'null',
       \ 'command'   : 'open',
@@ -527,10 +471,8 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 "neocommplete
 "**********************************
 let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
-"looks
 let g:neocomplete#max_keyword_width  =  50
 let g:neocomplete#max_list  =  5
-"not organized
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -538,46 +480,32 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
         \ }
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-"
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 let g:neocomplete#keyword_patterns['_'] = '\h\w*'
-""enable
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#use_vimproc                     = 1
-""enable
-"let g:neocomplete#disable_auto_complete           = 1
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_camel_case               = 1
 let g:neocomplete#enable_underbar_completion  =  1
-""cache size
 let g:neocomplete#sources#buffer#cache_limit_size = 1000000
 let g:neocomplete#sources#tags#cache_limit_size   = 30000000
-
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType xml setlocal omnifunc=xmlcomplete#Complet
 if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-
 "keyword pattern
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
-
 " Plugin key-mappings.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 highlight Pmenu ctermbg=8
@@ -616,22 +544,17 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 "**********************************
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
-" docstringは表示しない
-"autocmd FileType python setlocal completeopt-=preview
 
-"**********************************
-"indent-line
-"**********************************
 "**********************************
 "help 
 "**********************************
-"cnoremap help :<C-u>vertical topleft help<Space>
 augroup helpgroup
   autocmd!
 augroup END
 autocmd helpgroup FileType help nnoremap <buffer> q <C-w>c
 set keywordprg=:help " Open Vim internal help by K command
 set helplang=ja
+
 "**********************************
 "LOOKS
 "**********************************
@@ -654,6 +577,7 @@ filetype indent on
 filetype indent plugin on "ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有向にする
 set display=lastline "できるかぎり表示する　コマンドの結果？
 set wrap "折り返し
+
 "**********************************
 "THE OTHERS
 "**********************************
@@ -661,7 +585,7 @@ set modelines=0		"?
 set imdisable "english in normal mode
 set clipboard=unnamed " ヤンクなどで * レジスタにも書き込む
 set modifiable
-"set autochdir  "this option disenable vimshell
+
 augroup ChangeDir
   autocmd!
   autocmd BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
@@ -680,16 +604,13 @@ set wildmenu wildmode=list:full
 set showcmd "タイプ途中のコマンドを画面最下行に表示
 
 "**********************************
-"initialization
+"save and read window
 "**********************************
-set exrc "read /current_dir/.vimrc "
-set secure "read for secure"
 "windowsize 
 let g:save_window_file = expand('~/.vim/.vimwinpos')
 augroup SaveWindow
   autocmd!
   autocmd VimLeavePre * call s:save_window()
-
   function! s:save_window()
     let options = [
           \ 'set columns=' . &columns,
@@ -705,11 +626,9 @@ if filereadable(g:save_window_file)
 endif
   
 augroup init 
-if has("gui_running")
-  set fuoptions=maxvert,maxhorz "update lines and columns"
-  "autocmd GUIEnter * <M-Right> 
-  "au GUIEnter * set fullscreen
-endif
+  if has("gui_running")
+    set fuoptions=maxvert,maxhorz "update lines and columns"
+  endif
 augroup end
 
 "**********************************
@@ -717,7 +636,6 @@ augroup end
 "**********************************
 set fileencoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
-"iso-2022-jp,utf-8,euc-jp,cp932
 set encoding=utf-8
 
 "**********************************
@@ -760,21 +678,13 @@ noremap <C-l>  $
 nnoremap n nzz
 nnoremap N Nzz
 "help
-"nnoremap <C-h>      :<C-u>help<Space>
+nnoremap <C-h>      :<C-u>help<Space>
 
 "copy and paste 
 "カーソル位置以降の単語の文字列ととヤンクした文字列を置換
 noremap <silent> cy ce<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 noremap <silent> ciy ciw<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 inoremap jj <ESC>
-"nnoremap q :<C-u>q<CR>
-
-"**********************************
-"snippet
-"**********************************
-"java
-abbreviate println System.out.println(
-abbreviate main public static void main(String[] args){
 
 "**********************************
 "search
@@ -797,34 +707,10 @@ nnoremap<ESC><ESC> :nohlsearch<CR>
 "foldCC
 set foldtext=foldCCtext()
 let g:foldCCtext_tail = 'v:foldend-v:foldstart+1'
-" ### Folding ### {{{
-" 折りたたみを示す列を表示
-"set foldcolumn=1
-" 最初に折りたたみをなるべく開く
-"set foldlevel=99
-" デフォルトの折りたたみ方法
-"set foldmethod=marker
-"set foldmethod = indent
-" 折りたたまれたテキストの表示方法
-"set foldtext=MyFoldText()
-"FoldCCtext()
-" }}}
 highlight Folded guibg=grey guifg=blue
-"highlight FoldColumn guibg=darkgrey guifg=white
-
-"" オリジナル foldtext
-"function! MyFoldText()
-  "let line = getline(v:foldstart)
-  "let marker_removed = substitute(line, '{{{', '', 'g') " }}}
-  "let line_count = v:foldend - v:foldstart
-  "let lines = line_count > 1 ? ' lines' : ' line'
-  "let count_in_brace = substitute(marker_removed, '{\s*$', '{ ('.line_count.lines.') }', '')
-  "return count_in_brace
-"endfunction
-"fold marker {{{ }}}
 
 "**********************************
-"write vimrc when save
+"source vimrc when save
 "**********************************
 augroup ReadVimrc
     autocmd!
