@@ -734,6 +734,13 @@ let mapleader = ","
 if has('macunix')
   let mapleader = ","
 endif
+"insertmode
+inoremap : ;
+inoremap ; :
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 "normal mode
 noremap <s-y> y$
 nnoremap <buffer> q <C-w>c
