@@ -1,0 +1,8 @@
+-Xms128m
+-Xmx750m
+-XX:MaxPermSize=350m
+-XX:ReservedCodeCacheSize=96m
+-XX:+UseCompressedOops
+-Dawt.useSystemAAFontSettings=on
+-Dswing.aatext=true
+-Dsun.java2d.xrender=true
