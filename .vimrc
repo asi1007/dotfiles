@@ -468,19 +468,20 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 "**********************************
 "neocommplete
 "**********************************
+"keyword pattern
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
 let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
-let g:neocomplete#max_keyword_width  =  50
+let g:neocomplete#max_keyword_width  =  30
 let g:neocomplete#max_list  =  5
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
         \ }
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-let g:neocomplete#keyword_patterns['_'] = '\h\w*'
-let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#use_vimproc                     = 1
 let g:neocomplete#enable_fuzzy_completion         = 1
@@ -499,10 +500,6 @@ if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-"keyword pattern
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
