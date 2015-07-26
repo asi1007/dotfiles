@@ -352,7 +352,6 @@ let g:ref_kotobankej_auto_resize = 1
 let g:neomru#file_mru_path          = expand('~/.vim/etc/neomru/file')
 let g:neomru#directory_mru_path     = expand('~/.vim/etc/neomru/direcroty')
 let g:unite_data_directory          = expand('~/.vim/etc/unite')
-let g:unite_qfixhowm_new_memo_cmd = "tabnew"
 "grep
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
@@ -411,10 +410,9 @@ nnoremap <silent>[unite]b :<C-u>Unite -vertical bookmark<CR>
 nnoremap <silent>[unite]m :<C-u>Unite -vertical menu<CR>
 nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit outline<CR>
 nnoremap <silent> [unite]f :<C-u>Unite -vertical -no-quit file_rec/async<CR>
-nnoremap <silent>[unite]d :cd ~/Documents<CR>:<C-u>Unite -vertical -start-insert file_rec/async<CR>
 nnoremap <silent>[unite]h  :<C-u>Unite help<CR>
 nnoremap <silent>[unite]g  :<C-u>Unite qfixhowm<CR>
-nnoremap <silent>[unite]l  :<C-u>Unite -start-insert line<CR>
+nnoremap <silent>[unite]a :<C-u>Unite neomru/file<CR>
 
 "**********************************
 "quicktun config
