@@ -31,6 +31,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'vim-scripts/dbext.vim', '18.0'
 NeoBundle 'aklt/plantuml-syntax' "make uml by text
 NeoBundle 'rbonvall/vim-textobj-latex'
+NeoBundle 'stephpy/vim-yaml'
 "**********************************
 "IDE
 "**********************************
@@ -257,7 +258,7 @@ let g:PyFlakeDefaultComplexity=10
 "**********************************
 "syntastic
 "**********************************
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_python_checkers = ['pyflakes', 'pep8', 'pylint']
 
 "**********************************
 "qFixHown
@@ -496,10 +497,11 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType xml setlocal omnifunc=xmlcomplete#Complet
+"jedi work together with neocomplete
 if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
@@ -539,6 +541,10 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 "**********************************
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
+autocmd FileType python setlocal completeopt-=preview
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
 
 "**********************************
 "help 
