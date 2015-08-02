@@ -1,3 +1,4 @@
+
 if has('vim_starting')
   let s:vimrc = "~/dotfiles/.vimrc"
   let s:neobundle_root = "~/.vim/bundle/"
@@ -24,13 +25,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "programming language
 "**********************************
 NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'vim-scripts/javacomplete'
-NeoBundle 'bps/vim-textobj-python'
 NeoBundle 'davidhalter/jedi-vim' "cmmpletion for python 
+NeoBundleLazy "lambdalisue/vim-pyenv", {
+      \ "depends": ['davidhalter/jedi-vim'],
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
+NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'vim-scripts/dbext.vim', '18.0'
 NeoBundle 'aklt/plantuml-syntax' "make uml by text
-NeoBundle 'rbonvall/vim-textobj-latex'
 NeoBundle 'stephpy/vim-yaml'
 "**********************************
 "IDE
@@ -47,19 +50,15 @@ NeoBundle 'Shougo/vimproc', {
   \ },
 \ } "asyncronic compile or run
 NeoBundle 'scrooloose/syntastic.git' "syntax check by save
-NeoBundle 'aperezdc/vim-template' 
-NeoBundle 'vim-scripts/project.tar.gz' 
-NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'aperezdc/vim-template'
 NeoBundle 'shougo/neomru.vim' "show recently used file in unite
 "neosnippet and neocomplete
 NeoBundle 'shougo/neocomplete' "neocomplete plugin
-NeoBundle 'ujihisa/neco-look' "completion for english
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets' "neosnipet deffinition file
 NeoBundle "honza/vim-snippets" "snip files
 "git
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'cohama/agit.vim'
 "**********************************
 "Unite
 "**********************************
@@ -74,18 +73,11 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "**********************************
 NeoBundle 'kana/vim-submode'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle "Lokaltog/vim-easymotion"
 NeoBundle "vim-scripts/YankRing.vim"
 NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'sjl/gundo.vim'
-"**********************************
-"vim-ref
-"**********************************
-NeoBundle 'thinca/vim-ref' "for dictionary and pydoc
-NeoBundle 'mojako/ref-sources.vim'
 "**********************************
 "memo
 "**********************************
@@ -99,11 +91,7 @@ NeoBundle 'kana/vim-textobj-user' "to expand text-objects
 NeoBundle 'kana/vim-operator-user' "to expand operatior
 NeoBundle 'kana/vim-textobj-function' "to add function to text obj
 NeoBundle 'kana/vim-textobj-indent' " to add same indent block to text obj
-NeoBundle 'sgur/vim-textobj-parameter'
-NeoBundle 'osyo-manga/vim-textobj-multiblock'
-NeoBundle 'osyo-manga/vim-textobj-multitextobj' 
 NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'thinca/vim-textobj-between'
 "**********************************
 "edit
 "**********************************
@@ -134,27 +122,14 @@ endif
 "**********************************
 "statusline に %{fugitive#statusline()} を追加すると、ステータスラインに今いるブランチ名が表示される
 "nmap [fugitive] <Nop>
-nnoremap gc :Gcommit -am "
-nnoremap gpush :Git push<CR>
-nnoremap gpusll :Git pull<CR>
+nnoremap gc :Gcommit -m "
+nnoremap gpush :Git push<aCR>
+nnoremap gpull :Git pull<CR>
 nnoremap gs :Gstatus<CR>
 nnoremap gd :Gvdiff<CR>
 nnoremap gb :Gblame -s<CR>
 nnoremap gw :Gwrite<CR>
 nnoremap gr :Gread<CR>
-
-"**********************************
-"agit
-"**********************************
-nnoremap gl :Agit<CR>
-
-"**********************************
-"quickhl
-"**********************************
-nmap <leader>h <Plug>(quickhl-manual-this)
-xmap <leader>h <Plug>(quickhl-manual-this)
-nmap <leader>H <Plug>(quickhl-manual-reset)
-xmap <leader>H <Plug>(quickhl-manual-reset)
 
 "**********************************
 "submode.vim
@@ -191,21 +166,6 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 "**********************************
-"multitextobj
-"**********************************
-" 上から順に textobj を適用していき、該当するものが使用される
-let g:textobj_multitextobj_textobjects_i = [
-\   "\<Plug>(textobj-url-i)",
-\   "\<Plug>(textobj-multiblock-i)",
-\   "\<Plug>(textobj-function-i)",
-\   "\<Plug>(textobj-entire-i)",
-\]
-omap amt <Plug>(textobj-multitextobj-a)
-omap imt <Plug>(textobj-multitextobj-i)
-vmap amt <Plug>(textobj-multitextobj-a)
-vmap imt <Plug>(textobj-multitextobj-i)
-
-"**********************************
 "yankring    
 "**********************************
 let g:yankring_history_dir = '~/.vim/history'
@@ -223,7 +183,7 @@ nnoremap <F4> :GundoToggle<CR>
 "open browser
 "**********************************
 "let g:netrw_nogx = 1 " disable netrw's gx mapping.
-nmap <leader>os <Plug>(openbrowser-smart-search)
+nmap <leader>o* <Plug>(openbrowser-smart-search)
 nnoremap <leader>ob :OpenBrowser http://google.com/<CR> 
 
 "**********************************
@@ -270,7 +230,6 @@ let howm_filename = '%Y/%m/%d-%H.md'
 let QFixHowm_DatePattern = '%Y-%m-%d'
 let QFixHowm_FileType = 'markdown'
 let QFixHowm_Title = '#'
-"MRUでタイトル行とみなす正規表現(vimの正規表現)
 let QFixMRU_Title = {}
 let QFixMRU_Title['mkd'] = '^###[^#]'
 "encoding
@@ -289,11 +248,9 @@ let QFixHowm_QuickMemoFile  = 'quick.md'
 let QfixHowm_Template  =  ["%TAG%",  "%DATE%", ""]
 let QFixHowm_Cmd_NewEntry = "$a"
 "arrangement
-"エントリを自動整形する
 let QFixHowm_Autoformat = 1
 let QFixHowm_Autoformat_TitleMode = 1 "行頭にTitle全てタイトルとみなして整形
 let QFixHowm_SaveTime = 1 "タイムスタンプを自動で付加する
-"let QFixHowm_SplitMode = 1 "ウィンドウ分割を基本にしてhowmファイルを開く
 let QFixHowm_DefaultTag = ''
 
 "**********************************
@@ -308,44 +265,6 @@ let g:vimfiler_marked_file_icon = '*'
 let g:vimfiler_execute_file_list = 'vim'
 nmap <silent>e. :VimFiler -split -simple -winwidth=20 -no-quit<CR>
 let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
-
-"**********************************
-"vim-ref
-"**********************************
-let g:ref_cache_dir                 = expand('~/.vim/etc/vim_ref_cache')
-let g:ref_use_vimproc=1
-let g:ref_refe_version=2
-let g:ref_refe_encoding = 'utf-8'
-let g:ref_source_webdict_sites = {
-  \ 'je': {
-  \   'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
-  \   'line': 14,
-  \ },
-  \ 'ej': {
-  \   'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
-  \   'line': 14,
-  \ },
-  \ 'wiki': {
-  \   'url': 'http://ja.wikipedia.org/wiki/%s',
-  \ }}
-let g:ref_source_webdict_sites.default = 'ej'
-"出力に対するフィルタ。最初の数行を削除
-function! g:ref_source_webdict_sites.je.filter(output)
-  return join(split(a:output, "\n")[15 :], "\n")
-endfunction
-function! g:ref_source_webdict_sites.ej.filter(output)
-  return join(split(a:output, "\n")[15 :], "\n")
-endfunction
-function! g:ref_source_webdict_sites.wiki.filter(output)
-  return join(split(a:output, "\n")[17 :], "\n")
-endfunction
-nmap <leader>d :<C-u>Ref webdict ej<Space>
-
-"**********************************
-"ref-sources
-"**********************************
-let g:ref_kotobank_auto_resize = 1
-let g:ref_kotobankej_auto_resize = 1
 
 "**********************************
 "unite.vim
@@ -449,6 +368,7 @@ let g:quickrun_config.tex = {'command' : 'latexmk',
       \ 'cmdopt' : '-pdfdvi'}
       
 noremap <leader>r :<C-u>QuickRun<CR>
+noremap <F5> :<C-u>QuickRun<CR>
 
 augroup texrun
   autocmd!
@@ -467,6 +387,13 @@ let g:quickrun_config.markdown = {
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
 "**********************************
+"jedi
+"**********************************
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+autocmd FileType python setlocal completeopt-=preview
+
+"**********************************
 "neocommplete
 "**********************************
 "keyword pattern
@@ -476,7 +403,7 @@ endif
 let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
 let g:neocomplete#max_keyword_width  =  30
 let g:neocomplete#max_list  =  5
-let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
@@ -502,9 +429,6 @@ if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
 highlight Pmenu ctermbg=8
 highlight PmenuSel ctermbg=1
 highlight PmenuSbar ctermbg = 0
@@ -526,7 +450,6 @@ let g:neosnippet#snippets_directory += [s:my_snippet]
 "map
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnnipet_expand_target)
-nnoremap ,ne :NeoSnippetEdit<CR>
 autocmd BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
 " For snippet_complete marker.
 if has('conceal')
@@ -535,16 +458,6 @@ endif
 "java-complete
 autocmd FileType java :setlocal omnifunc=javacomplete#Complete
 autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
-
-"**********************************
-"jedi
-"**********************************
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-autocmd FileType python setlocal completeopt-=preview
-if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-endif
 
 "**********************************
 "help 
@@ -654,8 +567,6 @@ if has('macunix')
   let mapleader = ","
 endif
 "insertmode
-inoremap : ;
-inoremap ; :
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -666,8 +577,6 @@ nnoremap <buffer> q <C-w>c
 nnoremap <S-w> :<C-u>w<CR>
 nnoremap <S-q> :<C-u>q<CR>
 nnoremap ZQ <Nop>
-nnoremap : ;
-nnoremap ; :
 "move
 nnoremap j gj
 nnoremap gj j
