@@ -1,4 +1,3 @@
-
 if has('vim_starting')
   let s:vimrc = "~/dotfiles/.vimrc"
   let s:neobundle_root = "~/.vim/bundle/"
@@ -155,8 +154,8 @@ call submode#map('changetab', 'n', '', 'T', 'gT')
 "template
 "**********************************
 let g:templates_directory = ['~/.vim/template']
-let g:templates_name_prefix ='template'
-let g:templates_global_name_prefix ='template'
+let g:templates_name_prefix ='=template='
+let g:templates_global_name_prefix ='=template='
 
 "**********************************
 "incserch.vim
