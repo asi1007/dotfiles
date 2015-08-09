@@ -7,3 +7,6 @@ this repository has following setting files.
 * tmux.conf
 * gitconfig
 * molokai.vim (revised)
+* piplist.txt
+* idea.vmoptions
+* netveans.conf
