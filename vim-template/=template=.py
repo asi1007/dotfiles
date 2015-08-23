@@ -4,8 +4,12 @@
 #
 # Copyright © %YEAR% %USER% <%MAIL%>
 #
-# Distributed under terms of the %LICENSE% license.
+
+__author__ = "Atsushi Wada"
+__license__ = "MIT"
 
 """
-%HERE%
 """
+
+if __name__ == "__main__":
+    %HERE%

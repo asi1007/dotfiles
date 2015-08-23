@@ -1,19 +1,24 @@
+"**********************************
+"setting at starting
+"**********************************
 if has('vim_starting')
   let s:vimrc = "~/dotfiles/.vimrc"
   let s:neobundle_root = "~/.vim/bundle/"
-  set nocompatible "viと互換性を維持しない 
+  set nocompatible
+  "install neobundle 
   if !isdirectory(expand("~/.vim/.bundle/neobundle.vim/"))
-    " neobundleの自動インストール。要git
     echo "install neobundle..."
     :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/.bundle/neobundle.vim")
   endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  set runtimepath+=/usr/local/Cellar/vim/7.4.488/share/vim/vim74/syntax
+  "enable plugin
   filetype plugin indent on
   filetype plugin on
   syntax enable
+  syntax on
   runtime! macros/editexisting.vim
 endif
+
 "**********************************
 "Neo Bundle's setting
 "**********************************
@@ -50,7 +55,6 @@ NeoBundle 'Shougo/vimproc', {
 \ } "asyncronic compile or run
 NeoBundle 'scrooloose/syntastic.git' "syntax check by save
 NeoBundle 'aperezdc/vim-template'
-NeoBundle 'shougo/neomru.vim' "show recently used file in unite
 "neosnippet and neocomplete
 NeoBundle 'shougo/neocomplete' "neocomplete plugin
 NeoBundle 'Shougo/neosnippet'
@@ -62,6 +66,7 @@ NeoBundle 'tpope/vim-fugitive'
 "Unite
 "**********************************
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'shougo/neomru.vim' "show recently used file in unite
 NeoBundle 'soramugi/auto-ctags.vim' "to use unite outline
 NeoBundle 'Shougo/unite-outline'
 NeoBundle "tacroe/unite-mark"
@@ -71,7 +76,6 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "reenfoce function
 "**********************************
 NeoBundle 'kana/vim-submode'
-NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle "Lokaltog/vim-easymotion"
 NeoBundle "vim-scripts/YankRing.vim"
@@ -82,15 +86,6 @@ NeoBundle 'sjl/gundo.vim'
 "**********************************
 NeoBundle 'fuenor/qfixhowm' "to various memo manually install
 NeoBundle 'fuenor/qfixgrep' "to various memo manually install
-NeoBundle 'mattn/calendar-vim'
-"**********************************
-"text object and operator
-"**********************************
-NeoBundle 'kana/vim-textobj-user' "to expand text-objects
-NeoBundle 'kana/vim-operator-user' "to expand operatior
-NeoBundle 'kana/vim-textobj-function' "to add function to text obj
-NeoBundle 'kana/vim-textobj-indent' " to add same indent block to text obj
-NeoBundle 'kana/vim-textobj-line'
 "**********************************
 "edit
 "**********************************
@@ -170,20 +165,12 @@ map g/ <Plug>(incsearch-stay)
 let g:yankring_history_dir = '~/.vim/history'
 let g:yankring_max_history  =  10
 let g:yankring_max_display = 10
-nnoremap <silent> <leader>Y :<c-u>YRShow<CR>
 
 "**********************************
 "gundo
 "**********************************
 nnoremap <leader>gt :GundoToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
-
-"**********************************
-"open browser
-"**********************************
-"let g:netrw_nogx = 1 " disable netrw's gx mapping.
-nmap <leader>o* <Plug>(openbrowser-smart-search)
-nnoremap <leader>ob :OpenBrowser http://google.com/<CR> 
 
 "**********************************
 "show mark
@@ -194,11 +181,6 @@ augroup show-marks-sync
   autocmd!
   autocmd BufReadPost * silent! ShowMarksOnce
 augroup END
-" マークと表示の更新を同時に行う
-nnoremap [Mark] :<C-u>call <SID>AutoMarkrement()<CR><CR>:ShowMarksOnce<CR>
-" マークの全削
-command! -bar MarksDelete silent :delm! | :delm 0-9A-Z | :wv! | :ShowMarksOnce
-nnoremap <silent>d[Mark] :MarksDelete<CR>
 
 "**********************************
 "easy motion
@@ -271,17 +253,13 @@ let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
 let g:neomru#file_mru_path          = expand('~/.vim/etc/neomru/file')
 let g:neomru#directory_mru_path     = expand('~/.vim/etc/neomru/direcroty')
 let g:unite_data_directory          = expand('~/.vim/etc/unite')
-"grep
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_max_candidates = 200
 let g:unite_source_grep_recursive_opt = ''
-"looks
 let g:unite_split_rule = 'topleft'
 let g:unite_winwidth = 50
-"settings
 let g:unite_enable_start_insert = 0
-"marks
 let g:unite_source_mark_marks = 'abcABC012'
 "vimfiler
 call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
@@ -320,7 +298,7 @@ function! g:unite_source_menu_menus.shortcut.map(key, value)
           \           }
   endif
 endfunction
-"map
+
 nnoremap [unite] <Nop>
 nmap <space> [unite]
 nnoremap [unite]<space> :Unite<space>
@@ -336,7 +314,6 @@ nnoremap <silent>[unite]a :<C-u>Unite neomru/file<CR>
 "**********************************
 "quicktun config
 "**********************************
-" g:quickrun_config の初期化
 if !exists("g:quickrun_config")
     let g:quickrun_config={}
 endif
@@ -360,22 +337,17 @@ let g:quickrun_config = {
 \       "hook/time/enable" : 1,
 \   }
 \}
-"tex
+
 let g:quickrun_config.tex = {'command' : 'latexmk', 
       \ 'exec' : ['%c %o %s'], 
 \       "hook/shabadoubi_touch_henshin/enable" : 0,
       \ 'cmdopt' : '-pdfdvi'}
-      
-noremap <leader>r :<C-u>QuickRun<CR>
-noremap <F5> :<C-u>QuickRun<CR>
-
 augroup texrun
   autocmd!
   autocmd FileType tex nnoremap <buffer> <leader>lr :!latexmk -pdfdvi %<CR>
   autocmd FileType tex nnoremap <buffer> <leader>lo :!open -a skim %<.pdf<CR>
 augroup END
 
-"markdown
 let g:quickrun_config.markdown = {
       \ 'outputter' : 'null',
       \ 'command'   : 'open',
@@ -383,7 +355,11 @@ let g:quickrun_config.markdown = {
       \ 'args'      : 'Marked\ 2',
       \ 'exec'      : '%c %o %a %s',
       \ }
+
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+
+noremap <leader>r :<C-u>QuickRun<CR>
+noremap <F5> :<C-u>QuickRun<CR>
 
 "**********************************
 "jedi
@@ -435,48 +411,50 @@ highlight PmenuSbar ctermbg = 0
 "**********************************
 "Neosnippets
 "**********************************
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#disable_runtime_snippets = {'_' : 1}
-set completeopt-=preview
-autocmd InsertLeave * NeoSnippetClearMarkers
-"snippetdir
 let g:neosnippet#snippets_directory = []
 if ! empty(neobundle#get("vim-snippets"))
   let g:neosnippet#snippets_directory += ['~/.vim/bundle/vim-snippets/snippets']
 endif
 let s:my_snippet = '~/.vim/snippets/'
 let g:neosnippet#snippets_directory += [s:my_snippet]
-"map
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnnipet_expand_target)
-autocmd BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+set completeopt-=preview
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=0 concealcursor=i
 endif
-"java-complete
+
+autocmd InsertLeave * NeoSnippetClearMarkers
+autocmd BufNewFile,BufRead *.snip set syntax=snippet ft=snippet foldmethod=indent
 autocmd FileType java :setlocal omnifunc=javacomplete#Complete
 autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnnipet_expand_target)
 "**********************************
 "help 
 "**********************************
-augroup helpgroup
-  autocmd!
-augroup END
-autocmd helpgroup FileType help nnoremap <buffer> q <C-w>c
 set keywordprg=:help " Open Vim internal help by K command
 set helplang=ja
+augroup helpgroup
+  autocmd!
+  autocmd helpgroup FileType help nnoremap <buffer> q <C-w>c
+augroup END
 
 "**********************************
 "LOOKS
 "**********************************
-colorscheme molokai
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-syntax on
-let g:molokai_original = 1
 let g:rehash256 = 1 "?
+colorscheme molokai
+let g:molokai_original = 1
 set background=dark
+
+"status line and command line
+set laststatus=2 
+set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+set wildmenu wildmode=list:full
+set showcmd "タイプ途中のコマンドを画面最下行に表示
 set guifont=Ricty-Regular:h14
 set number 
 set cmdheight=2 "コマンドラインの高さを2行に
@@ -485,16 +463,16 @@ set autoindent
 set expandtab "tab is replaced by space
 set shiftwidth=2 "タブ文字の代わりにスペース２個を使う
 set shiftround "shiftwidthの倍数に丸める
-set softtabstop=2 "tab width is two
+set softtabstop=2 "tab width in display is two 
 filetype indent on
 filetype indent plugin on "ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有向にする
-set display=lastline "できるかぎり表示する　コマンドの結果？
+set display=lastline 
 set wrap "折り返し
 
 "**********************************
 "THE OTHERS
 "**********************************
-set modelines=0		"?
+set modelines=0
 set imdisable "english in normal mode
 set clipboard=unnamed " ヤンクなどで * レジスタにも書き込む
 set modifiable
@@ -507,14 +485,6 @@ set backspace=indent,eol,start
 "start: validate BS in incert mode back from normal mode"
 "eol:  delete eol
 "indent:  delete indent"
-
-"**********************************
-"status line and command line
-"**********************************
-set laststatus=2 "?
-set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
-set wildmenu wildmode=list:full
-set showcmd "タイプ途中のコマンドを画面最下行に表示
 
 "**********************************
 "save and read window
@@ -556,19 +526,13 @@ endif
 set encoding=utf-8
 
 "**********************************
-"tab BIND
-"**********************************
-nnoremap    [tab]   <Nop>
-nmap    t [tab]
-map <silent> [tab]n :tablast <bar> tabnew<CR>
-
-"**********************************
 "KEY BIND
 "**********************************
 let mapleader = ","
-if has('macunix')
-  let mapleader = ","
-endif
+"tab
+nnoremap [tab] <Nop>
+nmap t [tab]
+map <silent> [tab]n :tablast <bar> tabnew<CR>
 "insertmode
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
@@ -591,7 +555,7 @@ noremap <C-l>  $
 nnoremap n nzz
 nnoremap N Nzz
 "help
-nnoremap <C-h>      :<C-u>help<Space>
+nnoremap <C-h> :<C-u>help<Space>
 
 "copy and paste 
 "カーソル位置以降の単語の文字列ととヤンクした文字列を置換
@@ -604,10 +568,6 @@ inoremap jj <ESC>
 "**********************************
 set scrolloff=5
 set nostartofline
-
-"**********************************
-"search
-"**********************************
 set incsearch
 set ignorecase "検索時に大文字小文字を無視する
 set hlsearch "highlight"
@@ -617,7 +577,6 @@ nnoremap<ESC><ESC> :nohlsearch<CR>
 "**********************************
 "fold
 "**********************************
-"foldCC
 set foldtext=foldCCtext()
 let g:foldCCtext_tail = 'v:foldend-v:foldstart+1'
 highlight Folded guibg=grey guifg=blue
@@ -629,5 +588,4 @@ augroup ReadVimrc
     autocmd!
     autocmd BufWritePost .vimrc source ~/.vimrc
 augroup END
-
 
