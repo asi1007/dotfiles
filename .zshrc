@@ -7,6 +7,10 @@ eval "$(pyenv init -)"
 export TERM=xterm-256color
 export CLICOLOR=true
 export LC_ALL=ja_JP.UTF-8
+
+#for spark
+export IPYTHON=1
+
 source /usr/local/Cellar/antigen/1/share/antigen.zsh
 if [ -f /usr/local/etc/brew-wrap ];then
   source /usr/local/etc/brew-wrap
