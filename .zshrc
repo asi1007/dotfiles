@@ -1,16 +1,18 @@
+# env var
 export LANG=ja_JP.UTF-8
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
 export TERM=xterm-256color
 export CLICOLOR=true
 export LC_ALL=ja_JP.UTF-8
+export IPYTHON=1 # for spark
 
-#for spark
-export IPYTHON=1
+# init prog
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
+# plugin
 source /usr/local/Cellar/antigen/1/share/antigen.zsh
 if [ -f /usr/local/etc/brew-wrap ];then
   source /usr/local/etc/brew-wrap
