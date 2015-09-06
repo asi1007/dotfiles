@@ -17,8 +17,14 @@ setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
+bindkey -e # emacs
+
 autoload -Uz compinit
 compinit
+autoload -Uz select-word-style
+select-word-style default
+zstyle ':zle:*' word-chars " /=;@{},|"
+zstyle ':zle:*' word-styel unspecified
 
 # plugin
 source /usr/local/Cellar/antigen/1/share/antigen.zsh
