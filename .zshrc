@@ -12,6 +12,14 @@ export IPYTHON=1 # for spark
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 
+# opt
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+autoload -Uz compinit
+compinit
+
 # plugin
 source /usr/local/Cellar/antigen/1/share/antigen.zsh
 if [ -f /usr/local/etc/brew-wrap ];then
