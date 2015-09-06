@@ -30,6 +30,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "**********************************
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'davidhalter/jedi-vim' "cmmpletion for python 
+NeoBundleLazy "lambdalisue/vim-django-support", {
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
 NeoBundleLazy "lambdalisue/vim-pyenv", {
       \ "depends": ['davidhalter/jedi-vim'],
       \ "autoload": {
@@ -43,6 +47,7 @@ NeoBundle 'stephpy/vim-yaml'
 "IDE
 "**********************************
 NeoBundle "Shougo/vimfiler.vim"
+NeoBundle "Shougo/vimshell.vim"
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle "osyo-manga/shabadou.vim" "to use various window in quickrun
 NeoBundle 'Shougo/vimproc', {
