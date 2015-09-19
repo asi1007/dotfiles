@@ -81,11 +81,9 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "reenfoce function
 "**********************************
 NeoBundle 'kana/vim-submode'
-NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle "Lokaltog/vim-easymotion"
 NeoBundle "vim-scripts/YankRing.vim"
 NeoBundle 'chrisbra/csv.vim'
-NeoBundle 'sjl/gundo.vim'
 "**********************************
 "memo
 "**********************************
@@ -156,13 +154,6 @@ call submode#map('changetab', 'n', '', 'T', 'gT')
 let g:templates_directory = ['~/.vim/template']
 let g:templates_name_prefix ='=template='
 let g:templates_global_name_prefix ='=template='
-
-"**********************************
-"incserch.vim
-"**********************************
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
 "**********************************
 "yankring    
@@ -550,10 +541,10 @@ nnoremap <S-w> :<C-u>w<CR>
 nnoremap <S-q> :<C-u>q<CR>
 nnoremap ZQ <Nop>
 "move
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+noremap j gj
+noremap gj j
+noremap k gk
+noremap gk k
 noremap <C-h> ^
 noremap <C-l>  $
 "search
@@ -569,7 +560,8 @@ noremap <silent> ciy ciw<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 inoremap jj <ESC>
 
 " vimrc
-nnoremap <Space>. :edit $MYVIMRC
+nnoremap <Space>. <C-u>:edit $MYVIMRC<CR>
+nnoremap <Space>s. <C-u>:source $MYVIMRC<CR>
 
 "**********************************
 "search
