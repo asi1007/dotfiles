@@ -41,8 +41,8 @@ NeoBundleLazy "lambdalisue/vim-pyenv", {
       \ }}
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'aklt/plantuml-syntax' "make uml by text
 NeoBundle 'stephpy/vim-yaml'
+NeoBundle 'aklt/plantuml-syntax' "make uml by text
 "**********************************
 "IDE
 "**********************************
@@ -65,8 +65,9 @@ NeoBundle 'shougo/neocomplete' "neocomplete plugin
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets' "neosnipet deffinition file
 NeoBundle "honza/vim-snippets" "snip files
-"git
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'chrisbra/csv.vim'
+NeoBundle "scrooloose/nerdcommenter"
 "**********************************
 "Unite
 "**********************************
@@ -74,7 +75,6 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'shougo/neomru.vim' "show recently used file in unite
 NeoBundle 'soramugi/auto-ctags.vim' "to use unite outline
 NeoBundle 'Shougo/unite-outline'
-NeoBundle "tacroe/unite-mark"
 NeoBundle 'Shougo/unite-help'
 NeoBundle 'osyo-manga/unite-qfixhowm'
 "**********************************
@@ -83,21 +83,16 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 NeoBundle 'kana/vim-submode'
 NeoBundle "Lokaltog/vim-easymotion"
 NeoBundle "vim-scripts/YankRing.vim"
-NeoBundle 'chrisbra/csv.vim'
+NeoBundle "tpope/vim-surround"
 "**********************************
 "memo
 "**********************************
 NeoBundle 'fuenor/qfixhowm' "to various memo manually install
 NeoBundle 'fuenor/qfixgrep' "to various memo manually install
 "**********************************
-"edit
-"**********************************
-NeoBundle "tpope/vim-surround"
-NeoBundle "scrooloose/nerdcommenter"
-"**********************************
 "looks
 "**********************************
-NeoBundle 'tomasr/molokai' "colorscheme
+NeoBundle 'tomasr/molokai'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'jacquesbh/vim-showmarks'
 NeoBundle 'Lokaltog/vim-powerline'
@@ -114,11 +109,14 @@ if !has('vim_starting')
   call neobundle#end()
 endif
 
+if filereadable(expand("./.vim/resolvesimlink.vim"))
+  source ./.vim/resolvesimlink.vim
+endif
 "**********************************
 "fugitive
 "**********************************
-"statusline に %{fugitive#statusline()} を追加すると、ステータスラインに今いるブランチ名が表示される
-"nmap [fugitive] <Nop>
+nmap [fugitive] <Nop>
+nnoremap g [fugitive]
 nnoremap gc :Gcommit -m "
 nnoremap gpush :Git push<aCR>
 nnoremap gpull :Git pull<CR>
@@ -256,7 +254,6 @@ let g:unite_source_grep_recursive_opt = ''
 let g:unite_split_rule = 'topleft'
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 0
-let g:unite_source_mark_marks = 'abcABC012'
 "vimfiler
 call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
 if !exists("g:unite_source_menu_menus")
