@@ -568,6 +568,9 @@ noremap <silent> cy ce<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 noremap <silent> ciy ciw<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 inoremap jj <ESC>
 
+" vimrc
+nnoremap <Space>. :edit $MYVIMRC
+
 "**********************************
 "search
 "**********************************
