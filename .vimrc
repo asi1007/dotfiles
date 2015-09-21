@@ -560,6 +560,9 @@ inoremap jj <ESC>
 nnoremap <Space>. <C-u>:edit $MYVIMRC<CR>
 nnoremap <Space>s. <C-u>:source $MYVIMRC<CR>
 
+"emacs
+inoremap <C-d> <ESC>xa
+
 "**********************************
 "search
 "**********************************
