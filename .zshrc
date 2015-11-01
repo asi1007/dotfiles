@@ -8,7 +8,7 @@ export CLICOLOR=true
 export LC_ALL=ja_JP.UTF-8
 export IPYTHON=1 # for spark
 
-# init prog
+# init xenv for recognized by shell
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 
