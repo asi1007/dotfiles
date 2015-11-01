@@ -557,11 +557,18 @@ noremap <silent> ciy ciw<c-r>0<ESC>:let@/ = @1<CR>:noh<CR>
 inoremap jj <ESC>
 
 " vimrc
-nnoremap <Space>. <C-u>:edit $MYVIMRC<CR>
-nnoremap <Space>s. <C-u>:source $MYVIMRC<CR>
+"nnoremap <Space>. <C-u>:edit $MYVIMRC<CR>
+"nnoremap <Space>s. <C-u>:source $MYVIMRC<CR>
 
 "emacs
-inoremap <C-d> <ESC>xa
+inoremap <C-d> <del>
+inoremap <C-e> <end>
+inoremap <C-a> <home>
+inoremap <C-f> <left>
+inoremap <C-b> <right>
+inoremap <C-p> <up>
+inoremap <C-n> <Down>
+
 
 "**********************************
 "search
