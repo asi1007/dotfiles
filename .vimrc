@@ -82,7 +82,7 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "**********************************
 NeoBundle 'kana/vim-submode'
 NeoBundle "Lokaltog/vim-easymotion"
-NeoBundle "vim-scripts/YankRing.vim"
+" NeoBundle "vim-scripts/YankRing.vim"
 NeoBundle "tpope/vim-surround"
 "**********************************
 "memo
@@ -405,7 +405,7 @@ endif
 let s:my_snippet = '~/.vim/snippets/'
 let g:neosnippet#snippets_directory += [s:my_snippet]
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+" let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 set completeopt-=preview
 " For snippet_complete marker.
 if has('conceal')
@@ -419,6 +419,7 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnnipet_expand_target)
+
 "**********************************
 "help 
 "**********************************
