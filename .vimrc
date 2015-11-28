@@ -161,12 +161,6 @@ let g:yankring_max_history  =  10
 let g:yankring_max_display = 10
 
 "**********************************
-"gundo
-"**********************************
-nnoremap <leader>gt :GundoToggle<CR>
-nnoremap <F4> :GundoToggle<CR>
-
-"**********************************
 "show mark
 "**********************************
 nnoremap [Mark] <Nop>
@@ -394,7 +388,7 @@ autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType xml setlocal omnifunc=xmlcomplete#Complet
 "jedi work together with neocomplete
 if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
+  let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 highlight Pmenu ctermbg=8
