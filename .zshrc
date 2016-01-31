@@ -1,12 +1,19 @@
+# path
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/llvm/share/llvm:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/Cellar/apache-spark/1.5.0/libexec/ec2:$PATH"
+
 # env var
 export LANG=ja_JP.UTF-8
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
 export TERM=xterm-256color
 export CLICOLOR=true
 export LC_ALL=ja_JP.UTF-8
 export IPYTHON=1 # for spark
+source ~/.ec2/key.sh
 
 # init xenv for recognized by shell
 eval "$(rbenv init -)"
@@ -16,6 +23,8 @@ eval "$(pyenv init -)"
 setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
+setopt SHARE_HISTORY # for share history in tmux
+setopt CORRECT # for check command, and advice correct command
 
 # history
 HISTFILE=~/.zsh_history
@@ -34,6 +43,9 @@ zstyle ':zle:*' word-chars " /=;@{},|" #/ is asso separator
 zstyle ':zle:*' word-styel unspecified
 zstyle ':completion:*:default' menu select=2 # candidate will be selected by cursor
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+function listMavenCompletions { reply=(cli:execute cli:execute-phase archetype:generate compile clean install test test-compile deploy package cobertura:cobertura jetty:run -Dmaven.test.skip=true -DarchetypeCatalog=http://tapestry.formos.com/maven-snapshot-repository -Dtest= `if [ -d ./src ] ; then find ./src -type f | grep -v svn | sed 's?.*/\([^/]*\)\..*?-Dtest=\1?' ; fi`); }
+compctl -K listMavenCompletions mvn
 
 # plugin
 source /usr/local/Cellar/antigen/1/share/antigen.zsh
