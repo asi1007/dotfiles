@@ -1,17 +1,8 @@
 "**********************************
 "setting at starting
 "**********************************
+" set option
 if has('vim_starting')
-  let s:vimrc = "~/dotfiles/.vimrc"
-  let s:neobundle_root = "~/.vim/bundle/"
-  set nocompatible
-  "install neobundle 
-  if !isdirectory(expand("~/.vim/.bundle/neobundle.vim/"))
-    echo "install neobundle..."
-    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/.bundle/neobundle.vim")
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  "enable plugin
   filetype plugin indent on
   filetype plugin on
   syntax enable
@@ -19,17 +10,25 @@ if has('vim_starting')
   runtime! macros/editexisting.vim
 endif
 
-"**********************************
-"Neo Bundle's setting
-"**********************************
+" set neobundle
+if has('vim_starting')
+  let s:vimrc = "~/dotfiles/.vimrc"
+  let s:neobundle_root = "~/.vim/bundle/"
+  set nocompatible
+  if !isdirectory(expand("~/.vim/.bundle/neobundle.vim/"))
+    echo "install neobundle..."
+    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/.bundle/neobundle.vim")
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
 call neobundle#begin(expand('~/.vim/bundle/'))
 let g:neobundle_default_git_protocol='https'
 NeoBundleFetch 'Shougo/neobundle.vim'
-"**********************************
-"programming language
-"**********************************
+
+" language specific
 NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'davidhalter/jedi-vim' "cmmpletion for python 
+NeoBundle 'davidhalter/jedi-vim'
 NeoBundleLazy "lambdalisue/vim-django-support", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"]
@@ -43,9 +42,9 @@ NeoBundle 'nvie/vim-flake8'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'aklt/plantuml-syntax' "make uml by text
-"**********************************
-"IDE
-"**********************************
+NeoBundle 'vim-scripts/drools.vim'
+
+" IDE
 NeoBundle "Shougo/vimfiler.vim"
 NeoBundle "Shougo/vimshell.vim"
 NeoBundle 'thinca/vim-quickrun'
@@ -60,45 +59,41 @@ NeoBundle 'Shougo/vimproc', {
 \ } "asyncronic compile or run
 NeoBundle 'scrooloose/syntastic.git' "syntax check by save
 NeoBundle 'aperezdc/vim-template'
+
 "neosnippet and neocomplete
-NeoBundle 'shougo/neocomplete' "neocomplete plugin
+NeoBundle 'shougo/neocomplete' 
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets' "neosnipet deffinition file
-NeoBundle "honza/vim-snippets" "snip files
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle "honza/vim-snippets"
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'chrisbra/csv.vim'
 NeoBundle "scrooloose/nerdcommenter"
-"**********************************
+
 "Unite
-"**********************************
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'shougo/neomru.vim' "show recently used file in unite
+NeoBundle 'shougo/neomru.vim'
 NeoBundle 'soramugi/auto-ctags.vim' "to use unite outline
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/unite-help'
 NeoBundle 'osyo-manga/unite-qfixhowm'
-"**********************************
+
 "reenfoce function
-"**********************************
 NeoBundle 'kana/vim-submode'
 NeoBundle "Lokaltog/vim-easymotion"
-" NeoBundle "vim-scripts/YankRing.vim"
+NeoBundle "vim-scripts/YankRing.vim"
 NeoBundle "tpope/vim-surround"
-"**********************************
+
 "memo
-"**********************************
 NeoBundle 'fuenor/qfixhowm' "to various memo manually install
 NeoBundle 'fuenor/qfixgrep' "to various memo manually install
-"**********************************
+
 "looks
-"**********************************
 NeoBundle 'tomasr/molokai'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'jacquesbh/vim-showmarks'
 NeoBundle 'Lokaltog/vim-powerline'
-"**********************************
+
 "read helping info
-"**********************************
 NeoBundle "vim-jp/vimdoc-ja"
 NeoBundle 'thinca/vim-ft-help_fold'
 
@@ -130,7 +125,7 @@ nnoremap gr :Gread<CR>
 "submode.vim
 "**********************************
 let g:submode_timeout = 0
-"change window size mode
+" change window size 
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
 call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
 call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
@@ -139,7 +134,8 @@ call submode#map('winsize', 'n', '', '>', '<C-w>>')
 call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>-')
 call submode#map('winsize', 'n', '', '-', '<C-w>+')
-"goto tab mode
+
+" change tab
 call submode#enter_with('changetab', 'n', '', 'gt', 'gt')
 call submode#enter_with('changetab', 'n', '', 'gT', 'gT')
 call submode#leave_with('changetab', 'n', '', 'g')
@@ -325,6 +321,14 @@ let g:quickrun_config = {
 \   }
 \}
 
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+noremap <leader>r :<C-u>QuickRun<CR>
+noremap <F5> :<C-u>QuickRun<CR>
+
+"****************************************
+"latex
+"***************************************
+let g:tex_conceal = ''
 let g:quickrun_config.tex = {'command' : 'latexmk', 
       \ 'exec' : ['%c %o %s'], 
 \       "hook/shabadoubi_touch_henshin/enable" : 0,
@@ -332,7 +336,7 @@ let g:quickrun_config.tex = {'command' : 'latexmk',
 augroup texrun
   autocmd!
   autocmd FileType tex nnoremap <buffer> <leader>lr :!latexmk -pdfdvi %<CR>
-  autocmd FileType tex nnoremap <buffer> <leader>lo :!open -a skim %<.pdf<CR>
+  autocmd FileType tex nnoremap <buffer> <leader>lo :!open -a Preview %<.pdf<CR>
 augroup END
 
 let g:quickrun_config.markdown = {
@@ -343,17 +347,7 @@ let g:quickrun_config.markdown = {
       \ 'exec'      : '%c %o %a %s',
       \ }
 
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
-noremap <leader>r :<C-u>QuickRun<CR>
-noremap <F5> :<C-u>QuickRun<CR>
-
-"**********************************
-"jedi
-"**********************************
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-autocmd FileType python setlocal completeopt-=preview
 
 "**********************************
 "neocommplete
@@ -396,6 +390,13 @@ highlight PmenuSel ctermbg=1
 highlight PmenuSbar ctermbg = 0
 
 "**********************************
+"jedi
+"**********************************
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+autocmd FileType python setlocal completeopt-=preview
+
+"**********************************
 "Neosnippets
 "**********************************
 let g:neosnippet#snippets_directory = []
@@ -405,7 +406,7 @@ endif
 let s:my_snippet = '~/.vim/snippets/'
 let g:neosnippet#snippets_directory += [s:my_snippet]
 let g:neosnippet#enable_snipmate_compatibility = 1
-" let g:neosnippet#disable_runtime_snippets = {'_' : 1}
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 set completeopt-=preview
 " For snippet_complete marker.
 if has('conceal')
@@ -419,6 +420,7 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnnipet_expand_target)
+imap <C-a> <Plug>(neosnnipet_expand)
 
 "**********************************
 "help 
@@ -524,7 +526,7 @@ map <silent> [tab]n :tablast <bar> tabnew<CR>
 "insertmode
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
-inoremap <C-k> <Up>
+"inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 "normal mode
 noremap <s-y> y$
