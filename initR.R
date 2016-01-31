@@ -54,4 +54,5 @@ install.packages("lars")
 install.packages("liblinearR")
 install.packages("caret", dependencies = c("Depends", "Suggests"))
 install.packages("Metrics")
-
+install.packages("xgboost")
+install.packages("Ckmeans.1d.dp")
