@@ -2,18 +2,21 @@
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/llvm/share/llvm:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="$HOME/miniconda3/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/Cellar/apache-spark/1.5.0/libexec/ec2:$PATH"
 
-# env var
+# env 
 export LANG=ja_JP.UTF-8
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export TERM=xterm-256color
-export CLICOLOR=true
 export LC_ALL=ja_JP.UTF-8
+export CLICOLOR=true
+
 export IPYTHON=1 # for spark
 source ~/.ec2/key.sh
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 # init xenv for recognized by shell
 eval "$(rbenv init -)"
@@ -71,5 +74,4 @@ alias mkdir='mkdir -p'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
 alias -g G='| grep'
