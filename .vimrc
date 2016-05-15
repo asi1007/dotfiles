@@ -1,3 +1,4 @@
+" :todo: uninstall fugitive and setting for smart line
 "**********************************
 "setting at starting
 "**********************************
@@ -45,7 +46,6 @@ NeoBundle 'aklt/plantuml-syntax' "make uml by text
 NeoBundle 'vim-scripts/drools.vim'
 
 " IDE
-NeoBundle "Shougo/vimfiler.vim"
 NeoBundle "Shougo/vimshell.vim"
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle "osyo-manga/shabadou.vim" "to use various window in quickrun
@@ -66,7 +66,6 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle "honza/vim-snippets"
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'chrisbra/csv.vim'
 NeoBundle "scrooloose/nerdcommenter"
 
 "Unite
@@ -110,16 +109,16 @@ endif
 "**********************************
 "fugitive
 "**********************************
-nmap [fugitive] <Nop>
-nnoremap g [fugitive]
-nnoremap gc :Gcommit -m "
-nnoremap gpush :Git push<aCR>
-nnoremap gpull :Git pull<CR>
-nnoremap gs :Gstatus<CR>
-nnoremap gd :Gvdiff<CR>
-nnoremap gb :Gblame -s<CR>
-nnoremap gw :Gwrite<CR>
-nnoremap gr :Gread<CR>
+"nmap [fugitive] <Nop>
+"nnoremap g [fugitive]
+"nnoremap gc :Gcommit -m "
+"nnoremap gpush :Git push<aCR>
+"nnoremap gpull :Git pull<CR>
+"nnoremap gs :Gstatus<CR>
+"nnoremap gd :Gvdiff<CR>
+"nnoremap gb :Gblame -s<CR>
+"nnoremap gw :Gwrite<CR>
+"nnoremap gr :Gread<CR>
 
 "**********************************
 "submode.vim
@@ -218,18 +217,6 @@ let QFixHowm_Autoformat_TitleMode = 1 "行頭にTitle全てタイトルとみな
 let QFixHowm_SaveTime = 1 "タイムスタンプを自動で付加する
 let QFixHowm_DefaultTag = ''
 
-"**********************************
-"vim filer
-"**********************************
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_enable_auto_cd = 1
-let g:vimfiler_safe_mode_by_default = 0
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '*'
-let g:vimfiler_execute_file_list = 'vim'
-nmap <silent>e. :VimFiler -split -simple -winwidth=20 -no-quit<CR>
-let g:vimfiler_data_directory       = expand('~/.vim/etc/vimfiler')
 
 "**********************************
 "unite.vim
@@ -245,7 +232,6 @@ let g:unite_split_rule = 'topleft'
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 0
 "vimfiler
-call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
 if !exists("g:unite_source_menu_menus")
   let g:unite_source_menu_menus = {}
 endif
@@ -322,7 +308,6 @@ let g:quickrun_config = {
 \}
 
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
-noremap <leader>r :<C-u>QuickRun<CR>
 noremap <F5> :<C-u>QuickRun<CR>
 
 "****************************************
@@ -352,21 +337,18 @@ let g:quickrun_config.markdown = {
 "**********************************
 "neocommplete
 "**********************************
-"keyword pattern
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
-let g:neocomplete#max_keyword_width  =  30
-let g:neocomplete#max_list  =  5
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#data_directory    = expand('~/.vim/etc/neocomplete')
+let g:neocomplete#sources#syntax#min_keyword_length = 1
+let g:neocomplete#max_list  =  5
+let g:neocomplete#max_keyword_width  =  30
+let g:neocomplete#enable_auto_select = 1
+
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 let g:neocomplete#use_vimproc                     = 1
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#enable_smart_case = 1
@@ -378,23 +360,21 @@ let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType xml setlocal omnifunc=xmlcomplete#Complet
-"jedi work together with neocomplete
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+inoremap <expr> <C-S-k>    pumvisible() ? "\<C-y>" : "\<CR>"
 highlight Pmenu ctermbg=8
 highlight PmenuSel ctermbg=1
 highlight PmenuSbar ctermbg = 0
 
-"**********************************
 "jedi
-"**********************************
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+autocmd FileType python setlocal completeopt-=preview
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
-autocmd FileType python setlocal completeopt-=preview
 
 "**********************************
 "Neosnippets
