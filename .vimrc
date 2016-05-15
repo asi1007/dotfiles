@@ -46,7 +46,6 @@ NeoBundle 'aklt/plantuml-syntax' "make uml by text
 NeoBundle 'vim-scripts/drools.vim'
 
 " IDE
-NeoBundle "Shougo/vimshell.vim"
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle "osyo-manga/shabadou.vim" "to use various window in quickrun
 NeoBundle 'Shougo/vimproc', {
@@ -106,19 +105,6 @@ endif
 if filereadable(expand("./.vim/resolvesimlink.vim"))
   source ./.vim/resolvesimlink.vim
 endif
-"**********************************
-"fugitive
-"**********************************
-"nmap [fugitive] <Nop>
-"nnoremap g [fugitive]
-"nnoremap gc :Gcommit -m "
-"nnoremap gpush :Git push<aCR>
-"nnoremap gpull :Git pull<CR>
-"nnoremap gs :Gstatus<CR>
-"nnoremap gd :Gvdiff<CR>
-"nnoremap gb :Gblame -s<CR>
-"nnoremap gw :Gwrite<CR>
-"nnoremap gr :Gread<CR>
 
 "**********************************
 "submode.vim
@@ -173,16 +159,12 @@ let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_leader_key=","
 
 "**********************************
-"pyFlakes 
-"**********************************
-let g:PyFlakeOnWrite = 1
-let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
-let g:PyFlakeDefaultComplexity=10
-
-"**********************************
 "syntastic
 "**********************************
 let g:syntastic_python_checkers = ['pyflakes', 'pep8', 'pylint']
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeDefaultComplexity=10
 
 "**********************************
 "qFixHown
@@ -306,7 +288,6 @@ let g:quickrun_config = {
 \       "hook/time/enable" : 1,
 \   }
 \}
-
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 noremap <F5> :<C-u>QuickRun<CR>
 
@@ -331,8 +312,6 @@ let g:quickrun_config.markdown = {
       \ 'args'      : 'Marked\ 2',
       \ 'exec'      : '%c %o %a %s',
       \ }
-
-
 
 "**********************************
 "neocommplete
@@ -452,9 +431,6 @@ augroup ChangeDir
   autocmd BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
 augroup END
 set backspace=indent,eol,start 
-"start: validate BS in incert mode back from normal mode"
-"eol:  delete eol
-"indent:  delete indent"
 
 "**********************************
 "save and read window
