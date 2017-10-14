@@ -1,5 +1,7 @@
 [user]
-	name = asi1007
+	name = wada
 	email = zyanzyakazyan@gmail.com
 [core]
 	editor = vim
+[color]
+	ui = auto
