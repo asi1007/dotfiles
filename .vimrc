@@ -44,6 +44,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'aklt/plantuml-syntax' "make uml by text
 NeoBundle 'vim-scripts/drools.vim'
+NeoBundle 'digitaltoad/vim-pug'
 
 " IDE
 NeoBundle 'thinca/vim-quickrun'
