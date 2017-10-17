@@ -4,104 +4,65 @@
 "**********************************
 " set option
 if has('vim_starting')
-  filetype plugin indent on
-  filetype plugin on
-  syntax enable
-  syntax on
+  set nocompatible
   runtime! macros/editexisting.vim
 endif
 
-" set neobundle
-if has('vim_starting')
-  let s:vimrc = "~/dotfiles/.vimrc"
-  let s:neobundle_root = "~/.vim/bundle/"
-  set nocompatible
-  if !isdirectory(expand("~/.vim/.bundle/neobundle.vim/"))
-    echo "install neobundle..."
-    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/.bundle/neobundle.vim")
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-let g:neobundle_default_git_protocol='https'
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('.vim/plugged')
 
 " language specific
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundleLazy "lambdalisue/vim-django-support", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-NeoBundleLazy "lambdalisue/vim-pyenv", {
-      \ "depends": ['davidhalter/jedi-vim'],
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"]
-      \ }}
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'stephpy/vim-yaml'
-NeoBundle 'aklt/plantuml-syntax' "make uml by text
-NeoBundle 'vim-scripts/drools.vim'
-NeoBundle 'digitaltoad/vim-pug'
+Plug 'derekwyatt/vim-scala'
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
+Plug 'tpope/vim-markdown'
+Plug 'stephpy/vim-yaml'
+Plug 'aklt/plantuml-syntax' "make uml by text
+Plug 'vim-scripts/drools.vim'
+Plug 'digitaltoad/vim-pug'
 
 " IDE
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle "osyo-manga/shabadou.vim" "to use various window in quickrun
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
-\ } "asyncronic compile or run
-NeoBundle 'scrooloose/syntastic.git' "syntax check by save
-NeoBundle 'aperezdc/vim-template'
+Plug 'thinca/vim-quickrun'
+Plug 'osyo-manga/shabadou.vim' "to use various window in quickrun
+Plug 'Shougo/vimproc', {'do': 'make'}
+Plug 'scrooloose/syntastic.git' "syntax check by save
+Plug 'aperezdc/vim-template'
 
 "neosnippet and neocomplete
-NeoBundle 'shougo/neocomplete' 
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle "honza/vim-snippets"
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle "scrooloose/nerdcommenter"
+Plug 'shougo/neocomplete' 
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
 
 "Unite
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'shougo/neomru.vim'
-NeoBundle 'soramugi/auto-ctags.vim' "to use unite outline
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/unite-help'
-NeoBundle 'osyo-manga/unite-qfixhowm'
+Plug 'Shougo/unite.vim'
+Plug 'shougo/neomru.vim'
+Plug 'soramugi/auto-ctags.vim' "to use unite outline
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite-help'
+Plug 'osyo-manga/unite-qfixhowm'
 
 "reenfoce function
-NeoBundle 'kana/vim-submode'
-NeoBundle "Lokaltog/vim-easymotion"
-NeoBundle "vim-scripts/YankRing.vim"
-NeoBundle "tpope/vim-surround"
+Plug 'kana/vim-submode'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'tpope/vim-surround'
 
 "memo
-NeoBundle 'fuenor/qfixhowm' "to various memo manually install
-NeoBundle 'fuenor/qfixgrep' "to various memo manually install
+Plug 'fuenor/qfixhowm' "to various memo manually install
+Plug 'fuenor/qfixgrep' "to various memo manually install
 
 "looks
-NeoBundle 'tomasr/molokai'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'jacquesbh/vim-showmarks'
-NeoBundle 'Lokaltog/vim-powerline'
+Plug 'tomasr/molokai'
+Plug 'Yggdroot/indentLine'
+Plug 'jacquesbh/vim-showmarks'
+Plug 'Lokaltog/vim-powerline'
 
 "read helping info
-NeoBundle "vim-jp/vimdoc-ja"
-NeoBundle 'thinca/vim-ft-help_fold'
-
-NeoBundleCheck "プラグインがインストールされているかチェックする
-call neobundle#end()
-if !has('vim_starting')
-  call neobundle#call_hook('on_source') "vimrcを読み込み直したときのための設定
-  call neobundle#end()
-endif
+Plug 'vim-jp/vimdoc-ja'
+Plug 'thinca/vim-ft-help_fold'
+call plug#end()
 
 if filereadable(expand("./.vim/resolvesimlink.vim"))
   source ./.vim/resolvesimlink.vim
@@ -222,8 +183,7 @@ let g:unite_source_menu_menus.shortcut = {
 \   "description" : "shortcut"
 \}
 let g:unite_source_menu_menus.shortcut.candidates = [
-\   [ "vimrc"  , s:vimrc ],
-\   [ "neobundles", s:neobundle_root ],
+\   [ "vimrc"  , "~/dotfiles/.vimrc" ],
 \   [ "Unite Beautiful Attack", "Unite -auto-preview colorscheme" ],
 \   [ "Pocket", "http://www.getpocket.com/a/queue/" ],
 \]
@@ -360,9 +320,9 @@ let g:jedi#auto_vim_configuration = 0
 "Neosnippets
 "**********************************
 let g:neosnippet#snippets_directory = []
-if ! empty(neobundle#get("vim-snippets"))
-  let g:neosnippet#snippets_directory += ['~/.vim/bundle/vim-snippets/snippets']
-endif
+"if ! empty(neobundle#get("vim-snippets"))
+  "let g:neosnippet#snippets_directory += ['~/.vim/bundle/vim-snippets/snippets']
+"endif
 let s:my_snippet = '~/.vim/snippets/'
 let g:neosnippet#snippets_directory += [s:my_snippet]
 let g:neosnippet#enable_snipmate_compatibility = 1
