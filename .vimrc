@@ -6,8 +6,7 @@ call plug#begin('.vim/plugged')
   runtime look_plug.vim
 call plug#end()
 
-inoremap jj <ESC>
-
+runtime map.vim
 runtime look.vim
 
 augroup ReadVimrc
