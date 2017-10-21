@@ -1,3 +1,4 @@
+set runtimepath+=$HOME/dotfiles/vim
 
 call plug#begin('.vim/plugged')
   Plug 'vim-jp/vimdoc-ja'
@@ -5,6 +6,8 @@ call plug#begin('.vim/plugged')
 call plug#end()
 
 inoremap jj <ESC>
+
+runtime looks.vim
 
 augroup ReadVimrc
   autocmd!
