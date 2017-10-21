@@ -10,7 +10,7 @@ runtime unite.vim
 runtime map.vim
 runtime look.vim
 
-let g:unite_source_grep_recursive_opt = ''
+set keywordprg=:help
 augroup ReadVimrc
   autocmd!
   autocmd BufWritePost .vimrc source ~/.vimrc

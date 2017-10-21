@@ -1,0 +1,5 @@
+  Plug 'shougo/unite.vim'
+  Plug 'shougo/neomru.vim'
+  Plug 'soramugi/auto-ctags.vim'
+  Plug 'shougo/unite-outline'
+  Plug 'shougo/unite-help'
