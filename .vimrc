@@ -5,7 +5,7 @@ call plug#begin('$HOME/.vim/plugged')
   runtime look_plug.vim
   runtime unite_plug.vim
   runtime ide_plug.vim
-  Plug 'digitaltoad/vim-pug'
+  runtime lang_plug.vim
   Plug 'shougo/vimproc.vim',{'do': 'make'}
 call plug#end()
 
