@@ -8,6 +8,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/Cellar/apache-spark/1.5.0/libexec/ec2:$PATH"
 export PATH="/usr/local/bin/node:$PATH"
 
+export CPATH="/usr/include/c++/4.2.1"
+
 # env 
 export LANG=ja_JP.UTF-8
 export TERM=xterm-256color
@@ -22,6 +24,11 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 # init xenv for recognized by shell
 eval "$(rbenv init -)"
 # eval "$(pyenv init -)"
+#
+#for  brew file
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
 
 # opt
 setopt AUTO_CD
@@ -136,3 +143,5 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
