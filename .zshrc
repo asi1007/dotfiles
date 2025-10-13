@@ -36,10 +36,14 @@ zstyle ':zle:*' word-chars " /=;@{},|" #/ is asso separator
 zstyle ':zle:*' word-styel unspecified
 zstyle ':completion:*:default' menu select=2 # candidate will be selected by cursor
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
 
 # plugin
-source /usr/local/Cellar/antigen/1/share/antigen.zsh
+source /opt/homebrew/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
 # cl tool
+antigen use oh-my-zsh
 antigen bundle git
 antigen bundle pip
 antigen bundle brew
@@ -49,7 +53,9 @@ antigen bundle mollifier/cd-bookmark
 alias cdb='cd-bookmark'
 antigen bundle peco/peco
 antigen bundle mollifier/anyframe
+antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 # view
