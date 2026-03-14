@@ -1,0 +1,22 @@
+# 機密情報
+settings.json
+settings.local.json
+
+# セッション・キャッシュ
+projects/
+plugins/
+cache/
+backups/
+debug/
+file-history/
+history.jsonl
+ide/
+paste-cache/
+session-env/
+shell-snapshots/
+stats-cache.json
+statsig/
+tasks/
+telemetry/
+todos/
+.update.lock

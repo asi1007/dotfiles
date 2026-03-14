@@ -50,6 +50,14 @@ for file in $(find "$DOTFILES_DIR/.config" -type f); do
   link "$rel_path"
 done
 
+# .claude ディレクトリ配下をまとめてリンク
+if [ -d "$DOTFILES_DIR/.claude" ]; then
+  for file in $(find "$DOTFILES_DIR/.claude" -type f -not -name ".gitignore"); do
+    rel_path="${file#$DOTFILES_DIR/}"
+    link "$rel_path"
+  done
+fi
+
 echo "✅ Dotfiles installation complete!"
 echo "You may need to restart your terminal."
 
