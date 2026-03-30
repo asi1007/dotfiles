@@ -1,3 +1,4 @@
+
 # path
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/llvm/share/llvm:$PATH"
@@ -54,11 +55,26 @@ alias cdb='cd-bookmark'
 antigen bundle peco/peco
 antigen bundle mollifier/anyframe
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-completions
+#antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
+#antigen bundle marlonrichert/zsh-autocomplete@main
 antigen apply
 
 # view
 PROMPT='%F{magenta}[%~] %f'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Added by Windsurf
+export PATH="/Users/wadaatsushi/.codeium/windsurf/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/wadaatsushi/.antigravity/antigravity/bin:$PATH"
+
+# Set default directory for Warp
+if [[ "$TERM_PROGRAM" == "WarpTerminal" ]]; then
+  cd ~/Documents/automation
+fi
+
+export PATH="$HOME/go/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
