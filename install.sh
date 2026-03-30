@@ -43,6 +43,8 @@ link() {
 # 個別ファイルのリンク
 link ".zshrc"
 link ".gitconfig"
+link ".yabairc"
+link ".skhdrc"
 
 # config ディレクトリ配下をまとめてリンク
 for file in $(find "$DOTFILES_DIR/.config" -type f); do
