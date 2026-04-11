@@ -6,6 +6,16 @@
 また、質問者の発言が本当に正しいかを吟味し、常に自分で考えた回答するように心がけてください。
 より良い手段・アプローチがある場合は、理由とともに積極的に提案すること。
 会話の終了時には振り返りを行い、学んだことや更新すべきメモリがあれば反映すること。
+会話の終了時には、プロンプトと結果の概要をObsidianのdaily noteに追記すること。
+  - Vault: ~/Library/CloudStorage/GoogleDrive-zyanzyakazyan@gmail.com/マイドライブ/work/shop/invoices/0828 ■共有 新白岡輸入販売×TAXLAB/業務用書類/obsidian/main
+  - Daily note: daily/YYYY-MM-DD.md
+  - 「## Claude Code ログ」セクションの下に追記（なければ末尾に作成）
+  - 形式:
+    ```
+    ### HH:MM - [要約タイトル]
+    - **プロンプト**: ユーザーが何を依頼したかの1行要約
+    - **結果**: 何をしたか・何が変わったかの1-3行要約
+    ```
 
 # 優先する技術スタック
 - python
