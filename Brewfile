@@ -1,7 +1,7 @@
+tap "asmvik/formulae"
 tap "entireio/tap"
 tap "homebrew/services"
 tap "infisical/get-cli"
-tap "koekeishiya/formulae"
 tap "oven-sh/bun"
 tap "rconroy293/seventeenlands"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
