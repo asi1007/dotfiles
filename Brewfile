@@ -1,4 +1,4 @@
-tap "asmvik/formulae"
+tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git"
 tap "entireio/tap"
 tap "homebrew/services"
 tap "infisical/get-cli"
