@@ -48,8 +48,7 @@ cask "claude"
 cask "devin-desktop"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
-# CLI for Entire
-cask "entireio/tap/entire"
+cask "entire"
 # Collaborative team software
 cask "figma"
 # Set of tools to manage resources and applications hosted on Google Cloud
