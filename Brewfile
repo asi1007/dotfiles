@@ -34,6 +34,8 @@ brew "poetry"
 brew "poppler"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Application uninstaller
