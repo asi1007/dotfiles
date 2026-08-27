@@ -1,0 +1,93 @@
+# AeroSpace 設定
+# 2026-08-27 yabai + skhd から移行
+# 旧構成は ~/.local/backup/yabai-20260827/ にバックアップ済み
+
+config-version = 2
+
+# 自動起動は AeroSpace 自身が管理する。
+# LaunchAgent の plist を手で置かないこと（yabai は plist が2枚残って
+# 二重起動し、ウィンドウが相互に再配置され合う不具合を起こした）
+start-at-login = true
+
+# 保存したら自動で読み直す
+auto-reload-config = true
+
+after-startup-command = []
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+
+persistent-workspaces = ["1", "2", "3", "4", "5"]
+
+on-mode-changed = []
+focus-follows-mouse.enabled = false
+key-mapping.preset = 'qwerty'
+
+gaps.inner.horizontal = 0
+gaps.inner.vertical =   0
+gaps.outer.left =       0
+gaps.outer.bottom =     0
+gaps.outer.top =        0
+gaps.outer.right =      0
+
+[mode.main.binding]
+
+    # --- 旧 .skhdrc から移植（指の記憶をそのまま残す） ---
+    # alt-h/l はデスクトップ切替 → ワークスペース切替
+    alt-h = 'workspace --wrap-around prev'
+    alt-l = 'workspace --wrap-around next'
+    # alt-j/k はウィンドウ巡回
+    alt-j = 'focus --wrap-around dfs-next'
+    alt-k = 'focus --wrap-around dfs-prev'
+
+    # ウィンドウの入れ替え
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    # --- ここから AeroSpace で増える操作 ---
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
+
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    # alt-a 〜 alt-z のワークスペース割当は意図的に外している。
+    # macOS では option + 文字が特殊文字入力に使われるため、
+    # 全部奪うと文字入力が壊れる
+
+    alt-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main']
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
