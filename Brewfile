@@ -1,7 +1,9 @@
-tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git"
+tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git", trusted: { formulae: ["skhd", "yabai"] }
 tap "entireio/tap"
 tap "homebrew/services"
 tap "infisical/get-cli"
+tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
+tap "nikitabobko/tap"
 tap "oven-sh/bun"
 tap "rconroy293/seventeenlands"
 # Plugin manager for zsh, inspired by oh-my-zsh and vundle
@@ -38,6 +40,12 @@ brew "python@3.13"
 brew "ripgrep"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Simple hotkey-daemon for macOS.
+brew "koekeishiya/formulae/skhd"
+# A tiling window manager for macOS based on binary space partitioning.
+brew "koekeishiya/formulae/yabai"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Application uninstaller
 cask "appcleaner"
 # Menu bar icon organiser

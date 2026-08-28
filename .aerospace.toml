@@ -7,7 +7,7 @@ config-version = 2
 # 自動起動は AeroSpace 自身が管理する。
 # LaunchAgent の plist を手で置かないこと（yabai は plist が2枚残って
 # 二重起動し、ウィンドウが相互に再配置され合う不具合を起こした）
-start-at-login = true
+start-at-login = false   # 2026-08-28 yabai へ戻したため無効化（切り戻す場合は true）
 
 # 保存したら自動で読み直す
 auto-reload-config = true
