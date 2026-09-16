@@ -78,3 +78,15 @@ fi
 
 export PATH="$HOME/go/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# Codex: automation は入れ子 git リポジトリなので、既定のルート判定(.git)だと
+# サブリポジトリで止まり、親の CLAUDE.md も親の .agents/skills も読まれない。
+# ops/ を持つのは automation 本体だけなので、それをルートマーカーにしてルートを固定する。
+# グローバル設定にすると ops/ を持たない他リポジトリが壊れるため、ここだけで足す。
+codex() {
+  if [[ "$PWD" == "$HOME/Documents/automation"* ]]; then
+    command codex -c 'project_root_markers=["ops"]' "$@"
+  else
+    command codex "$@"
+  fi
+}
