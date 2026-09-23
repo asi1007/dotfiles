@@ -83,6 +83,15 @@ memory は個人の環境にしか無く他セッション・他の人から見�
   次のセッションが古いタブを掴んで別のページを操作する事故になる
 - **閉じるのは自分が開いたタブだけ。** ユーザーが元から開いていたタブと Chrome 本体は触らない
 - 途中でエラー中断するときも、開いたタブを閉じてから報告する
+- **ブラウザが起動せずタイムアウトするときは `ctkd` のハングを疑う。** Chromium は起動中に
+  CryptoTokenKit へ同期 XPC を投げる（`TKTokenWatcher startWatching`）。ユーザーの
+  `ctkd -tw` が Secure Enclave 鍵の署名で LocalAuthentication の応答待ちのまま固まると、
+  シリアルキューが塞がって**以降すべてのブラウザ起動が無限に待たされる**。
+  headless も headed も、profile を消しても、Chrome / Chrome for Testing のどちらでも再現する。
+  `kill -9 $(pgrep -f "ctkd -tw")` で解消する（launchd が即座に再生成するので再起動は不要）。
+  切り分けは `sample <起動したブラウザのPID>` で、main thread が
+  `CryptoTokenKit` → `xpc_connection_send_message_with_reply_sync` で止まっていれば確定。
+  2026-09-23 に /request-payment が 2 回連続でタイムアウトして判明（ctkd は 2日18時間ハングしていた）
 
 # 開発原則
 rules:
