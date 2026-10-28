@@ -77,7 +77,8 @@ memory は個人の環境にしか無く他セッション・他の人から見�
 
 # ブラウザ操作
 - **画像を作成・編集したら、必ずブラウザで表示してユーザーが確認できる状態にする。** 保存先の案内だけで完了にしない。
-- 既定は playwright。`claude-in-chrome` はユーザーのログイン済みセッションが要るサイトだけに使う
+- 既定は Playwright。ログイン済みChromeが必要なサイトは **Playwright MCPのChrome拡張接続**（`--extension`）または利用可能な `claude-in-chrome` を使う。独立したPlaywrightブラウザでログイン画面が出ても、普段のChromeが未ログインとは判断しない。
+- CodexのPlaywright接続設定は `~/.codex/config.toml` の `mcp_servers.playwright`。拡張接続の設定変更後も既存MCPプロセスには反映されないため、新しい接続を起動する。拡張の接続完了表示と実際のSeller Central画面で接続先を確認する。トークンを表示・転記しない。
 - **`claude-in-chrome` を使ったら、最後に自分が開いたタブを `tabs_close_mcp` で閉じる。**
   普段使いの Chrome を直接操作しているため、開きっぱなしにするとタブが溜まり、
   次のセッションが古いタブを掴んで別のページを操作する事故になる
@@ -92,6 +93,17 @@ memory は個人の環境にしか無く他セッション・他の人から見�
   切り分けは `sample <起動したブラウザのPID>` で、main thread が
   `CryptoTokenKit` → `xpc_connection_send_message_with_reply_sync` で止まっていれば確定。
   2026-09-23 に /request-payment が 2 回連続でタイムアウトして判明（ctkd は 2日18時間ハングしていた）
+
+
+## Amazon Seller Central のログイン・SMS認証
+
+- ログイン済みChromeへ拡張経由で接続し、既存セッションを利用する。再ログインが必要なら `~/Documents/automation/procurements/automate-yiwu/.env` の `SELLER_CENTRAL_EMAIL` / `SELLER_CENTRAL_PASSWORD` を使用し、値はログへ出さない。
+- **SMSコードをユーザーに尋ねる前に `~/Library/Messages/chat.db` から自動取得する。** SMS送信直前の時刻を記録し、読取専用SQLite接続で今回の送信以降の受信だけを新しい順に読む。Apple epochナノ秒は `(Unix秒 - 978307200) * 1000000000`。
+  SQL: `SELECT ROWID, text, attributedBody FROM message WHERE is_from_me=0 AND date >= ? ORDER BY date DESC LIMIT 20`
+- `text` がNULLなら `attributedBody` をUTF-8・エラー無視でデコードして本文を確認する。`text LIKE '%Amazon%'` だけで絞ると新しいmacOSのSMSを見落とす。Amazonの認証本文かつ数字境界付き6桁コードが一意に取れる場合だけ入力する。
+- 到着待ちは5秒間隔、最大60秒。期限切れならサイトの再送可能時間を待って一度だけ再送し、送信時刻を更新する。古いコードを再利用しない。コードやSMS本文はツール出力・ログ・成果物・daily noteへ出さず、入力へ直接渡す。
+- `input[name="otpCode"]` など実画面の認証欄へ入力し、可視の送信ボタンで認証する。コードが取得できない場合だけ、DB権限・MessagesのSMS同期・本文形式を確認して残る問題を説明する。launchd実行ではFull Disk Access不足でDBを読めない場合がある。
+- 作業終了時は自分が開いたタブだけ閉じる。拡張接続でユーザーの既存タブやChrome本体を閉じない。
 
 # 開発原則
 rules:
