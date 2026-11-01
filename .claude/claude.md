@@ -77,7 +77,7 @@ memory は個人の環境にしか無く他セッション・他の人から見�
 
 # ブラウザ操作
 - **画像を作成・編集したら、必ずブラウザで表示してユーザーが確認できる状態にする。** 保存先の案内だけで完了にしない。
-- 既定は Playwright。ログイン済みChromeが必要なサイトは **Playwright MCPのChrome拡張接続**（`--extension`）または利用可能な `claude-in-chrome` を使う。独立したPlaywrightブラウザでログイン画面が出ても、普段のChromeが未ログインとは判断しない。
+- **全作業で、ブラウザ操作は最初に Playwright の headless で実行する。** 認証・サイト制約などで headless では実行できないことを確認した場合だけ、表示中のブラウザを操作する。スキルにログイン済みChromeの利用が書かれていても、この順序を優先する。表示中のログイン済みChromeが必要になったら **Playwright MCPのChrome拡張接続**（`--extension`）または利用可能な `claude-in-chrome` を使う。独立したPlaywrightブラウザでログイン画面が出ても、普段のChromeが未ログインとは判断しない。
 - CodexのPlaywright接続設定は `~/.codex/config.toml` の `mcp_servers.playwright`。拡張接続の設定変更後も既存MCPプロセスには反映されないため、新しい接続を起動する。拡張の接続完了表示と実際のSeller Central画面で接続先を確認する。トークンを表示・転記しない。
 - **`claude-in-chrome` を使ったら、最後に自分が開いたタブを `tabs_close_mcp` で閉じる。**
   普段使いの Chrome を直接操作しているため、開きっぱなしにするとタブが溜まり、
@@ -97,7 +97,7 @@ memory は個人の環境にしか無く他セッション・他の人から見�
 
 ## Amazon Seller Central のログイン・SMS認証
 
-- ログイン済みChromeへ拡張経由で接続し、既存セッションを利用する。再ログインが必要なら `~/Documents/automation/procurements/automate-yiwu/.env` の `SELLER_CENTRAL_EMAIL` / `SELLER_CENTRAL_PASSWORD` を使用し、値はログへ出さない。
+- 上記のheadless優先ルールに従い、拡張経由のChromeへ切り替えた場合は既存セッションを利用する。再ログインが必要なら `~/Documents/automation/procurements/automate-yiwu/.env` の `SELLER_CENTRAL_EMAIL` / `SELLER_CENTRAL_PASSWORD` を使用し、値はログへ出さない。
 - **SMSコードをユーザーに尋ねる前に `~/Library/Messages/chat.db` から自動取得する。** SMS送信直前の時刻を記録し、読取専用SQLite接続で今回の送信以降の受信だけを新しい順に読む。Apple epochナノ秒は `(Unix秒 - 978307200) * 1000000000`。
   SQL: `SELECT ROWID, text, attributedBody FROM message WHERE is_from_me=0 AND date >= ? ORDER BY date DESC LIMIT 20`
 - `text` がNULLなら `attributedBody` をUTF-8・エラー無視でデコードして本文を確認する。`text LIKE '%Amazon%'` だけで絞ると新しいmacOSのSMSを見落とす。Amazonの認証本文かつ数字境界付き6桁コードが一意に取れる場合だけ入力する。
