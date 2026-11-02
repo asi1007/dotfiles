@@ -54,6 +54,8 @@ cask "bartender"
 cask "canva"
 # Anthropic's official Claude AI desktop app
 cask "claude"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 # Agentic IDE with AI agent command center
