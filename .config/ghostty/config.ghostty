@@ -1,0 +1,4 @@
+# 日本語と英字の太さがそろう UDEV Gothic。文字は太めに描画する
+font-family = UDEV Gothic 35
+font-size = 18
+font-thicken = true

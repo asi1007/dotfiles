@@ -65,6 +65,8 @@ cask "docker-desktop"
 cask "entire"
 # Collaborative team software
 cask "figma"
+# Japanese monospace font based on BIZ UDGothic and JetBrains Mono
+cask "font-udev-gothic"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
 # Allows keymap customization on HHKB HYBRID Type-S and HYBRID models
