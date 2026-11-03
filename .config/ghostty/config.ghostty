@@ -2,3 +2,6 @@
 font-family = UDEV Gothic 35
 font-size = 18
 font-thicken = true
+
+# cmux の新しい端末の開始フォルダ
+working-directory = /Users/wadaatsushi/Documents/automation
