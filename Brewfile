@@ -52,6 +52,8 @@ cask "appcleaner"
 cask "bartender"
 # Design tool
 cask "canva"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Anthropic's official Claude AI desktop app
 cask "claude"
 # Ghostty-based terminal with vertical tabs and notifications for AI coding agents
