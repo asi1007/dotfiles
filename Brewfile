@@ -64,7 +64,7 @@ cask "codex"
 cask "devin-desktop"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
-cask "entire"
+cask "entireio/tap/entire"
 # Collaborative team software
 cask "figma"
 cask "font-udev-gothic"
