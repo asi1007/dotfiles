@@ -1,6 +1,29 @@
 {
   "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
   "schemaVersion": 1,
+  "actions": {
+    "codex-workspace": {
+      "type": "workspace",
+      "title": "Codex",
+      "workspace": {
+        "layout": {
+          "pane": {
+            "surfaces": [
+              {
+                "type": "terminal",
+                "command": "codex"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "ui": {
+    "newWorkspace": {
+      "action": "codex-workspace"
+    }
+  },
   "app": {
     "defaultWorkspacePath": "/Users/wadaatsushi/Documents/automation",
     "workspaceInheritWorkingDirectory": false
